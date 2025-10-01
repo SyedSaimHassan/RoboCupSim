@@ -16,13 +16,13 @@
 class Players{
     private:
         //Physics Parameters
-        double playerMaxSpeed;
-        double playerMaxAcceleration;
-        double playerMaxShootForce;
+        QPointF playerMaxSpeed;
+        QPointF playerMaxAcceleration;
+        QPointF playerMaxShootForce;
 
         //Body Parameters
-        QPointF playerPosition;
-        double playerGyroAngle = 0.0;
+        std::vector<QPointF> playerPositions;
+        std::vector<double> playerGyroAngle = {0.0,0.0,0.0,0.0};
   
     //Render
     void Render(QPainter *painter);
