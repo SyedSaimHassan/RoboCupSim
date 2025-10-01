@@ -12,7 +12,7 @@ class Transformation : public QWidget
 
         double offSetX, offSetY, scale;
     
-        public:
+    public:
 
         // Finds the scale of pixels per meter, and also screen offset on X-axis and Y-axis
         void transformation()
