@@ -10,6 +10,10 @@ class Transformation : public QWidget
         double worldX = 10.4;
         double worldY = 7.4;
 
+        double PlayerRadius = 0.09;
+        int PlayerNumber;
+        int NumberOfRobots = 1;
+
         double offSetX, offSetY, scale;
     
     public:
