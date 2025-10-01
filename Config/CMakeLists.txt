@@ -5,7 +5,7 @@ file(GLOB LIB_SOURCES
     Config/*.h
 )
 
-add_library(UI ${LIB_SOURCES})
+add_library(config ${LIB_SOURCES})
 
 target_link_libraries(UI
     PRIVATE
