@@ -7,7 +7,7 @@ file(GLOB LIB_SOURCES
 
 add_library(config ${LIB_SOURCES})
 
-target_link_libraries(UI
+target_link_libraries(config
     PRIVATE
         ${GLOBAL_LIBS}
 )
