@@ -8,6 +8,7 @@ file(GLOB LIB_SOURCES
 add_library(config ${LIB_SOURCES})
 
 target_link_libraries(config
-    PRIVATE
+    PRIVATEgit push origin main
+
         ${GLOBAL_LIBS}
 )

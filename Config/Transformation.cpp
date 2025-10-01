@@ -4,20 +4,20 @@ using namespace std;
 
 class Transformation : public QWidget
 {
-    protected:
+    public:
 
         // World dimensions
         double worldX = 10.4;
         double worldY = 7.4;
 
-        double PlayerRadius = 0.09;
-        int PlayerNumber;
-        int NumberOfRobots = 1;
+        // Parameters needed for player
+        double playerRadius = 0.09;
+        int playerNumber;
+        int numberOfRobots = 1;
 
+        // Transformation variables
         double offSetX, offSetY, scale;
     
-        public:
-
         // Finds the scale of pixels per meter, and also screen offset on X-axis and Y-axis
         void transformation()
         {
