@@ -26,7 +26,7 @@ class Players{
   
     //Render
     void Render(QPainter *painter);
-    void drawPlayers(QPainter *painter);
+    void drawPlayers(QPainter *painter,int playerNumber);
     void rotate(QPainter *painter);
 
 
