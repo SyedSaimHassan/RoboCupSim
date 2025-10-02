@@ -3,7 +3,7 @@ add_executable(Main
  
 )
 
-target_link_libraries(QtTestApp
+target_link_libraries(Main
     Qt5::Widgets
     Qt5::Core
     Qt5::Gui
