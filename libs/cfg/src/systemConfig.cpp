@@ -2,7 +2,7 @@
 
 // Ball config
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(1.0f, 0.0f);
-const float cfg::SystemConfig::ballRadius = 0.05f;
+const float cfg::SystemConfig::ballRadius = 0.0215f;
 
 // Robot config (speed is in m/s)
 const float cfg::SystemConfig::robotRadius = 0.204f;
