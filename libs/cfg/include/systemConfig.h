@@ -5,7 +5,7 @@
 
 namespace cfg {
 struct SystemConfig{
-    static constexpr int numRobots = 12;
+    static constexpr int numRobots = 8;
 
     // Ball
     static const Eigen::Vector2d initBallPosition;
