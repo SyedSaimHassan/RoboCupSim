@@ -9,6 +9,7 @@
 #include <QKeyEvent>
 #include <iostream>
 #include <vector>
+#include <Eigen/Dense>
 #include "dimensions.h"
 #include "players.h"
 #define To_Be_Implemented int
@@ -18,11 +19,19 @@ enum class State { Kickoff, Playing, Paused, Foul, Finished };
 class Game : public QWidget {
  private:
   State gameState = State::Kickoff;
-
+  Players Players;
+   
   void drawField(QPainter *painter);
   void drawPlayers(QPainter *painter);
   void drawBall(QPainter *painter);
   void paintEvent(QPaintEvent *) override;
+  void keyPressEvent(QKeyEvent *event) override;
+  void keyReleaseEvent(QKeyEvent *event) override;
+  void handleInsertKey(int Key);
+  void handleRemoveKey(int Key);
+  void keyControls();
+  QSet<int> PlayerKeys;
+  int SelectedPlayerId = 0;
 
  public:
   Game(QWidget *parent = nullptr);

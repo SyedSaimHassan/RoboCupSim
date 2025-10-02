@@ -10,6 +10,7 @@ const float cfg::SystemConfig::playerMaxSpeed = 2.0f;
 // const float cfg::SystemConfig::playerMaxAcceleration = 0.0f;
 // const float cfg::SystemConfig::playerMaxShootForce = 0.0f;
 
+const float cfg::SystemConfig::robotSpeed = 2.0f;
 // Team 1 initial formation
 std::vector<Eigen::Vector3d> cfg::SystemConfig::teamOneStartFormation = []() {
   std::vector<Eigen::Vector3d> v(SystemConfig::numRobots);

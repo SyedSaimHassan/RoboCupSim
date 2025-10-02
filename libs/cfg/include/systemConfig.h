@@ -17,10 +17,10 @@ struct SystemConfig{
     // static const float playerMaxAcceleration;
     // static const float playerMaxShootForce;
 
-    // Robot Team
-    static std::vector<Eigen::Vector3d> teamOneStartFormation;
-    static std::vector<Eigen::Vector3d> teamTwoStartFormation;   
+  // Robot Team
+  static std::vector<Eigen::Vector3d> teamOneStartFormation;
+  static std::vector<Eigen::Vector3d> teamTwoStartFormation;
 };
-}
+}  // namespace cfg
 
 #endif
