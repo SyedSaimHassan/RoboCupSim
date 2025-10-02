@@ -59,6 +59,23 @@ void Game::keyControls() {
       case Qt::Key_A:
         PlayerSpeed.x() = -cfg::SystemConfig::playerMaxSpeed / 60;
         break;
+      // Debugging
+      case Qt::Key_Up:
+        Ball_.DebugMove(0.0f, 1.0f * Div);
+        break;
+      case Qt::Key_Down:
+        Ball_.DebugMove(0.0f, -1.0f * Div);
+
+        break;
+      case Qt::Key_Left:
+        Ball_.DebugMove(-1.0f * Div, 0.0f);
+
+        break;
+      case Qt::Key_Right:
+        Ball_.DebugMove(1.0f * Div, 0.0f);
+      case Qt::Key_Slash:
+        Ball_.DebugMove(0.0f, 0.0f);
+        break;
     }
   }
   this->Players_.setPose((this->Players_.getPose(SelectedPlayerId) + PlayerSpeed),
