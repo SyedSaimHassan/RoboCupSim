@@ -11,8 +11,6 @@ const float cfg::SystemConfig::robotRadius = 0.204f;
 std::vector<Eigen::Vector3d> cfg::SystemConfig::teamOneStartFormation = []() {
   std::vector<Eigen::Vector3d> v(SystemConfig::numRobots);
   if (SystemConfig::numRobots >= 1) v[0] = Eigen::Vector3d(-0.5f, -0.0f, 0.0f);
-  if (SystemConfig::numRobots >= 2) v[1] = Eigen::Vector3d(-0.3f, 0.3f, 0.0f);
-  if (SystemConfig::numRobots >= 3) v[2] = Eigen::Vector3d(-0.3f, -0.3f, 0.0f);
   if (SystemConfig::numRobots >= 4) v[3] = Eigen::Vector3d(-0.7f, -0.3f, 0.0f);
   if (SystemConfig::numRobots >= 5) v[4] = Eigen::Vector3d(-0.7f, 0.3f, 0.0f);
   if (SystemConfig::numRobots >= 6) v[5] = Eigen::Vector3d(-0.9f, -0.0f, 0.0f);
@@ -23,8 +21,6 @@ std::vector<Eigen::Vector3d> cfg::SystemConfig::teamOneStartFormation = []() {
 std::vector<Eigen::Vector3d> cfg::SystemConfig::teamTwoStartFormation = []() {
   std::vector<Eigen::Vector3d> v(SystemConfig::numRobots);
   if (SystemConfig::numRobots >= 1) v[0] = Eigen::Vector3d(0.5f, 0.0f, 0.0f);
-  if (SystemConfig::numRobots >= 2) v[1] = Eigen::Vector3d(0.3f, 0.3f, 0.0f);
-  if (SystemConfig::numRobots >= 3) v[2] = Eigen::Vector3d(0.3f, -0.3f, 0.0f);
   if (SystemConfig::numRobots >= 4) v[3] = Eigen::Vector3d(0.7f, -0.3f, 0.0f);
   if (SystemConfig::numRobots >= 5) v[4] = Eigen::Vector3d(0.7f, 0.3f, 0.0f);
   if (SystemConfig::numRobots >= 6) v[5] = Eigen::Vector3d(0.9f, -0.0f, 0.0f);
