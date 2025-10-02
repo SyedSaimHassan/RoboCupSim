@@ -17,7 +17,9 @@ void Game::paintEvent(QPaintEvent *event) {
 }
 
 void Game::drawField(QPainter *painter) {}
-void Game::drawPlayers(QPainter *painter) {}
+void Game::drawPlayers(QPainter *painter) {
+  
+}
 void Game::drawBall(QPainter *painter) {}
 
 }  // namespace Controller

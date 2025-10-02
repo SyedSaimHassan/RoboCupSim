@@ -1,1 +1,12 @@
-#Empty
+add_executable(Main
+    Main.cpp     
+ 
+)
+
+target_link_libraries(QtTestApp
+    Qt5::Widgets
+    Qt5::Core
+    Qt5::Gui
+    GameController
+    pthread
+)
