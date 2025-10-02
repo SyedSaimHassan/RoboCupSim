@@ -15,14 +15,13 @@
 
 class Ball : public QWidget {
  public:
-  Ball(QWidget *parent = nullptr) : QWidget(parent) {}
-
- protected:
-  virtual void drawBall(QPainter *painter);
+  void drawBall(QPainter *painter);
 
   qreal ballDia = cfg::SystemConfig::ballRadius;
   Eigen::Vector2d ballV = Eigen::Vector2d(0, 0), ballPos = cfg::SystemConfig::initBallPosition,
                   initPos = ballPos;
+  Eigen::Vector2d getBallV() { return ballV; }
+  Eigen::Vector2d getBallPos() { return ballPos; }
 
   bool respawnBall = 0;
 };
