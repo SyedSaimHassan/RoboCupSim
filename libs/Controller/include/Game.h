@@ -16,7 +16,7 @@
 #include "ball.h"
 #include "playingField.h"
 #define To_Be_Implemented int
-
+#define Div 1/60
 namespace Controller {
 enum class State { Kickoff, Playing, Paused, Foul, Finished };
 class Game : public QWidget {
