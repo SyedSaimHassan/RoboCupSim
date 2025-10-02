@@ -14,6 +14,7 @@ void Game::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
   cfg::Dimensions::screenWidth = width();
   cfg::Dimensions::screenHeight = height();
+  Transformation::instance().transformation(&painter);
   drawField(&painter);
   drawPlayers(&painter);
   drawBall(&painter);
