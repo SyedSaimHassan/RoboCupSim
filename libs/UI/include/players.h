@@ -15,6 +15,7 @@
 
 //Self made libraries
 #include "playerUtil.h"
+#include "systemConfig.h"
 
 class Players : public QWidget{
     public:
@@ -24,7 +25,10 @@ class Players : public QWidget{
         QPointF playerMaxShootForce;
 
         //Body Parameters
-        std::vector<QPointF> playerPositions = {QPointF(0,0),QPointF(2,2),QPointF(50,50),QPointF(80,80)};
+        std::vector<QPointF> playerPositions = {QPointF(cfg::SystemConfig::teamOneStartFormation[0][0],cfg::SystemConfig::teamOneStartFormation[0][1]),
+            QPointF(cfg::SystemConfig::teamOneStartFormation[1][0],cfg::SystemConfig::teamOneStartFormation[1][1]),
+            QPointF(cfg::SystemConfig::teamOneStartFormation[2][0],cfg::SystemConfig::teamOneStartFormation[2][1]),
+            QPointF(cfg::SystemConfig::teamOneStartFormation[3][0],cfg::SystemConfig::teamOneStartFormation[3][1])};
         std::vector<double> playerGyroAngle = {0.0,0.0,0.0,0.0};
   
     //Render
