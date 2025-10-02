@@ -14,8 +14,15 @@ void Players::Render(QPainter *painter){
 void Players::drawPlayers(QPainter *painter, int playerNumber){
     painter->drawEllipse(playerPositions[playerNumber-1],cfg::SystemConfig::robotRadius,cfg::SystemConfig::robotRadius);
 
-    painter->drawLine(playerPositions[playerNumber-1],QPointF(playerPositions[playerNumber-1].x()*cos(playerGyroAngle[playerNumber-1]),playerPositions[playerNumber-1].y()*sin(playerGyroAngle[playerNumber-1])));
-}
+    QPointF start = playerPositions[playerNumber - 1];
+    qreal r = cfg::SystemConfig::robotRadius;
+    qreal angle = playerGyroAngle[playerNumber - 1];
+
+    // End point
+    QPointF end(start.x() + r * cos(angle),
+                start.y() + r * sin(angle));
+
+    painter->drawLine(start, end);}
 
 
 void Players::setPose(Eigen::Vector3d pose,int playerID=0){
