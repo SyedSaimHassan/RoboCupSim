@@ -10,14 +10,14 @@
 #include <QKeyEvent>
 #include <cmath>
 #include <iostream>
-#include "transformation.h"
 #include "systemConfig.h"
-
+#include "dimensions.h"
+namespace Ball{
 class Ball : public QWidget {
  public:
   void drawBall(QPainter *painter);
 
-  qreal ballDia = cfg::SystemConfig::ballRadius;
+  qreal ballDia = cfg::SystemConfig::ballRadius * 2;
   Eigen::Vector2d ballV = Eigen::Vector2d(0, 0), ballPos = cfg::SystemConfig::initBallPosition,
                   initPos = ballPos;
   Eigen::Vector2d getBallV() { return ballV; }
@@ -25,4 +25,5 @@ class Ball : public QWidget {
 
   bool respawnBall = 0;
 };
+}
 #endif

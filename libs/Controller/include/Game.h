@@ -13,6 +13,8 @@
 #include "dimensions.h"
 #include "players.h"
 #include "transformation.h"
+#include "ball.h"
+
 #define To_Be_Implemented int
 
 namespace Controller {
@@ -20,7 +22,8 @@ enum class State { Kickoff, Playing, Paused, Foul, Finished };
 class Game : public QWidget {
  private:
   State gameState = State::Kickoff;
-  Players Players;
+  Players Players_;
+  Ball::Ball Ball_;
    
   void drawField(QPainter *painter);
   void drawPlayers(QPainter *painter);

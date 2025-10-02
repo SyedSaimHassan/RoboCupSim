@@ -26,5 +26,6 @@ target_link_libraries(GameController PUBLIC
     Qt5::Core
     Qt5::Gui
     config
+    Ball
     VisualsLib
 )

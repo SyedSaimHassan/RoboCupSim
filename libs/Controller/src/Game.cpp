@@ -14,15 +14,16 @@ void Game::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
   cfg::Dimensions::screenWidth = width();
   cfg::Dimensions::screenHeight = height();
-  Transformation::instance().transformation(&painter);
+  Transformation::instance().transformation(&painter, rect());
+  keyControls();
   drawField(&painter);
   drawPlayers(&painter);
   drawBall(&painter);
 }
 
 void Game::drawField(QPainter *painter) {}
-void Game::drawPlayers(QPainter *painter) { this->Players.Render(painter); }
-void Game::drawBall(QPainter *painter) {}
+void Game::drawPlayers(QPainter *painter) { this->Players_.Render(painter); }
+void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 
 void Game::keyPressEvent(QKeyEvent *event) { handleInsertKey(event->key()); }
 void Game::keyReleaseEvent(QKeyEvent *event) { handleRemoveKey(event->key()); }
@@ -53,14 +54,15 @@ void Game::keyControls() {
         PlayerSpeed.y() = -cfg::SystemConfig::playerMaxSpeed / 60;
         break;
       case Qt::Key_D:
-        PlayerSpeed.x() = cfg::SystemConfig::playerMaxSpeed/ 60;
+        PlayerSpeed.x() = cfg::SystemConfig::playerMaxSpeed / 60;
         break;
       case Qt::Key_A:
         PlayerSpeed.x() = -cfg::SystemConfig::playerMaxSpeed / 60;
         break;
     }
   }
-  this->Players.setPose((this->Players.getPose(SelectedPlayerId)+PlayerSpeed),SelectedPlayerId);
+  this->Players_.setPose((this->Players_.getPose(SelectedPlayerId) + PlayerSpeed),
+                         SelectedPlayerId);
 }
 void Game::handleInsertKey(int key) { PlayerKeys.insert(key); }
 void Game::handleRemoveKey(int key) { PlayerKeys.remove(key); }
