@@ -14,7 +14,7 @@
 #include "players.h"
 #include "transformation.h"
 #include "ball.h"
-
+#include "playingField.h"
 #define To_Be_Implemented int
 
 namespace Controller {
@@ -24,7 +24,7 @@ class Game : public QWidget {
   State gameState = State::Kickoff;
   Players Players_;
   Ball::Ball Ball_;
-   
+  UI Field; 
   void drawField(QPainter *painter);
   void drawPlayers(QPainter *painter);
   void drawBall(QPainter *painter);

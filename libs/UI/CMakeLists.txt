@@ -6,5 +6,7 @@ target_link_libraries(VisualsLib PUBLIC UtilsLib config eigen ${GLOBAL_LIBS})
 target_include_directories(VisualsLib PUBLIC include)
 
 
+target_include_directories(VisualsLib PUBLIC include)
+
 add_subdirectory(demo)
 # add_subdirectory(test)

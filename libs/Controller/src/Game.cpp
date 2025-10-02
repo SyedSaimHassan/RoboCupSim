@@ -21,7 +21,7 @@ void Game::paintEvent(QPaintEvent *event) {
   drawBall(&painter);
 }
 
-void Game::drawField(QPainter *painter) {}
+void Game::drawField(QPainter *painter) {this->Field.CreateField(painter);}
 void Game::drawPlayers(QPainter *painter) { this->Players_.Render(painter); }
 void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 
