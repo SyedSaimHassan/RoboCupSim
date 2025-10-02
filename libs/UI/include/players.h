@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 //C++ Libraries
 #include <cmath>
 #include <vector>
@@ -39,3 +40,5 @@ class Players : public QWidget{
     // and other such functions
 
 };
+
+#endif
