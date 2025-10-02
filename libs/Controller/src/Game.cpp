@@ -2,7 +2,7 @@
 
 namespace Controller {
 
-Game::Game(QWidget *parent = nullptr) : QWidget(parent) {
+Game::Game(QWidget *parent) : QWidget(parent) {
   std::cout << "[Controller::Game::Game] Startup Successfull" << std::endl;
   this->resize(QGuiApplication::primaryScreen()->geometry().size());
 }
