@@ -44,6 +44,7 @@ add_compile_definitions(CMAKE_BUILD_DIR="${CMAKE_CURRENT_BINARY_DIR}")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
 
 # Make Qt5 available everywhere
