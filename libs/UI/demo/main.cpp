@@ -1,5 +1,5 @@
 // #include "players.h"
-#include<generate_UI.h>
+#include "playingField.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]){
