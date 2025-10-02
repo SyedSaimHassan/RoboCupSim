@@ -2,7 +2,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 file(GLOB_RECURSE HEADERS "include/*.h")
 
 add_library(VisualsLib ${SOURCES} ${HEADERS})
-target_link_libraries(VisualsLib PRIVATE UtilsLib config ${GLOBAL_LIBS})
+target_link_libraries(VisualsLib PUBLIC UtilsLib config ${GLOBAL_LIBS})
 target_include_directories(VisualsLib PUBLIC include)
 
 
