@@ -13,7 +13,10 @@
 #include <QKeyEvent>
 #include <QDebug>
 
-class Players{
+//Self made libraries
+#include "playerUtil.h"
+
+class Players : public QWidget{
     public:
         //Physics Parameters
         QPointF playerMaxSpeed;
@@ -21,13 +24,14 @@ class Players{
         QPointF playerMaxShootForce;
 
         //Body Parameters
-        std::vector<QPointF> playerPositions;
+        std::vector<QPointF> playerPositions = {QPointF(0,0),QPointF(2,2),QPointF(50,50),QPointF(80,80)};
         std::vector<double> playerGyroAngle = {0.0,0.0,0.0,0.0};
   
     //Render
     void Render(QPainter *painter);
     void drawPlayers(QPainter *painter,int playerNumber);
-    QPointF withinRadius(double x, double y, int id = 0);
+    void drawBackground(QPainter *painter);
+    void paintEvent(QPaintEvent *event);
     //Movement Functions (work later)
     // void keyPressEvent(QKeyEvent *event) override;
     // and other such functions
