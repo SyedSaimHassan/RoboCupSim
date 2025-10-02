@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "qpointf": "cpp",
-        "qwidget": "cpp",
-        "qpainter": "cpp",
-        "fft": "cpp"
-    }
-}
