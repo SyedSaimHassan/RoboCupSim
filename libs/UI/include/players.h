@@ -30,8 +30,6 @@ class Players : public QWidget{
     //Render
     void Render(QPainter *painter);
     void drawPlayers(QPainter *painter,int playerNumber);
-    void drawBackground(QPainter *painter);
-    void paintEvent(QPaintEvent *event);
     //Movement Functions (work later)
     // void keyPressEvent(QKeyEvent *event) override;
     // and other such functions

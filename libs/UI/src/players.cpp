@@ -16,17 +16,3 @@ void Players::drawPlayers(QPainter *painter, int playerNumber){
 
     painter->drawLine(playerPositions[playerNumber-1],QPointF(playerPositions[playerNumber-1].x()*cos(playerGyroAngle[playerNumber-1]),playerPositions[playerNumber-1].y()*sin(playerGyroAngle[playerNumber-1])));
 }
-
-
-void Players::drawBackground(QPainter *painter) {
-    QRectF worldRect(0,0,1920,1080);
-
-    painter->fillRect(rect(), Qt::gray);  
-    painter->fillRect(worldRect, Qt::white);    
-}
-
-void Players::paintEvent(QPaintEvent *event){
-    QPainter painter(this);
-    drawBackground(&painter);
-    Render(&painter);
-}
