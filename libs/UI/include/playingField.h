@@ -1,5 +1,5 @@
-#ifndef GENERAGE_UI_H
-#define GENERATE_UI_H
+#ifndef PLAYING_FIELD_H
+#define PLAYING_FIELD_H
 #include<iostream>
 #include<QWidget>
 #include<QPainter>
@@ -19,8 +19,7 @@ class UI:public QWidget{
 
     public:
         void CreateField(QPainter *painter);
-    protected:
-        void paintEvent(QPaintEvent *) override;
+
 };
 
 #endif
