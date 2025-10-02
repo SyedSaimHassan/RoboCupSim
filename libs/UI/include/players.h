@@ -4,6 +4,7 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <Eigen/Dense>
 
 //Qt Libraries
 #include <QWidget>
@@ -20,10 +21,6 @@
 
 class Players : public QWidget{
     public:
-        //Physics Parameters
-        QPointF playerMaxSpeed;
-        QPointF playerMaxAcceleration;
-        QPointF playerMaxShootForce;
 
         //Body Parameters
         std::vector<QPointF> playerPositions = {QPointF(cfg::SystemConfig::teamOneStartFormation[0][0],cfg::SystemConfig::teamOneStartFormation[0][1]),
@@ -35,6 +32,9 @@ class Players : public QWidget{
     //Render
     void Render(QPainter *painter);
     void drawPlayers(QPainter *painter,int playerNumber);
+    Eigen::Vector3d getPose(int playerID);
+    void setPose(Eigen::Vector3d pose, int playerID);
+
     //Movement Functions (work later)
     // void keyPressEvent(QKeyEvent *event) override;
     // and other such functions

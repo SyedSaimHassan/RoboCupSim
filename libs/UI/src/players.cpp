@@ -16,3 +16,15 @@ void Players::drawPlayers(QPainter *painter, int playerNumber){
 
     painter->drawLine(playerPositions[playerNumber-1],QPointF(playerPositions[playerNumber-1].x()*cos(playerGyroAngle[playerNumber-1]),playerPositions[playerNumber-1].y()*sin(playerGyroAngle[playerNumber-1])));
 }
+
+
+void Players::setPose(Eigen::Vector3d pose,int playerID=0){
+    if (!playerID){return;}
+    playerPositions[playerID-1].setX(pose.x());
+    playerPositions[playerID-1].setY(pose.y()); 
+    playerGyroAngle[playerID-1] = pose.z();
+}
+
+Eigen::Vector3d Players::getPose(int playerID){
+    return Eigen::Vector3d(playerPositions[playerID-1].x(),playerPositions[playerID-1].y(),playerGyroAngle[playerID-1]);
+}
