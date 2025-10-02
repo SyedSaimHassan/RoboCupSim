@@ -14,7 +14,7 @@
 #include <QDebug>
 
 class Players{
-    private:
+    public:
         //Physics Parameters
         QPointF playerMaxSpeed;
         QPointF playerMaxAcceleration;
@@ -27,9 +27,7 @@ class Players{
     //Render
     void Render(QPainter *painter);
     void drawPlayers(QPainter *painter,int playerNumber);
-    void rotate(QPainter *painter);
-
-
+    QPointF withinRadius(double x, double y, int id = 0);
     //Movement Functions (work later)
     // void keyPressEvent(QKeyEvent *event) override;
     // and other such functions
