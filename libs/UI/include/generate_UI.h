@@ -12,8 +12,8 @@
 #include<QApplication>
 #include<QKeyEvent>
 #include<QRandomGenerator>
-// #include"Dimensions.h"
-// #include "Transformation.h"
+#include"dimensions.h"
+#include "transformation.h"
 
 class UI:public QWidget{
 

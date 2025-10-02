@@ -3,20 +3,21 @@
 void UI::CreateField(QPainter *painter){
     painter->setBackground(QBrush(Qt::green));
     painter->eraseRect(rect());
-    // Transformation Transform;
-    
-    // painter->setPen(QPen(Qt::black,4));
-    // painter->drawRect(QRectF(Transform.meterToPixel(0.04,0.04,width(),height()),Transform.meterToPixel(Transform.worldX-0.04,Transform.worldY-0.04,width(),height())));
+    Transformation Transform;
+    Transform.transformation(painter);
+    painter->setPen(QPen(Qt::black,4));
+// 
+    painter->drawRect(QRectF(Transform.meterToPixel(0.04,0.04),Transform.meterToPixel(cfg::Dimensions::fieldWidth-0.04,cfg::Dimensions::fieldHeight-0.04)));
     
     // painter->setPen(QPen(Qt::red,2));
-    // painter->drawRect(QRectF(Transform.meterToPixel(0.52,3.2,width(),height()),Transform.meterToPixel(0.7,4.2,width(),height())));
-    // painter->drawRect(QRectF(Transform.meterToPixel(Transform.worldX-0.52,Transform.worldY-3.2,width(),height()),Transform.meterToPixel(Transform.worldX-0.7,Transform.worldY-4.2,width(),height())));
+    // painter->drawRect(QRectF(Transform.meterToPixel(0.7-cfg::Dimensions::fieldGoalWidth,(cfg::Dimensions::fieldHeight-cfg::Dimensions::fieldGoalHeight)/2),Transform.meterToPixel(0.7,(cfg::Dimensions::fieldHeight+cfg::Dimensions::fieldGoalHeight)/2)));
+    // painter->drawRect(QRectF(Transform.meterToPixel(cfg::Dimensions::fieldWidth-(0.7-cfg::Dimensions::fieldGoalWidth),cfg::Dimensions::fieldHeight-(cfg::Dimensions::fieldHeight-cfg::Dimensions::fieldGoalHeight)/2),Transform.meterToPixel(cfg::Dimensions::fieldWidth-0.7,cfg::Dimensions::fieldHeight-(cfg::Dimensions::fieldHeight+cfg::Dimensions::fieldGoalHeight)/2)));
     
     
     // painter->setPen(QPen(Qt::white,2));
-    // painter->drawRect(QRectF(Transform.meterToPixel(0.7,0.7,width(),height()),Transform.meterToPixel(Transform.worldX-0.7,Transform.worldY-0.7,width(),height())));
+    // painter->drawRect(QRectF(Transform.meterToPixel(0.7,0.7),Transform.meterToPixel(cfg::Dimensions::fieldWidth-0.7,cfg::Dimensions::fieldHeight-0.7)));
 
-    // painter->drawRect(QRectF(Transform.meterToPixel(0.7,2.7,width(),height()),Transform.meterToPixel(1.7,4.7,width(),height())));
+    // painter->drawRect(QRectF(Transform.meterToPixel(0.7,2.7),Transform.meterToPixel(1.7,4.7)));
     // painter->drawRect(QRectF(Transform.meterToPixel(Transform.worldX-0.7,Transform.worldY-2.7,width(),height()),Transform.meterToPixel(Transform.worldX-1.7,Transform.worldY-4.7,width(),height())));
 
     // painter->drawLine(QLineF(Transform.meterToPixel(0.7,3.7,width(),height()),Transform.meterToPixel(Transform.worldX-0.7,3.7,width(),height())));
