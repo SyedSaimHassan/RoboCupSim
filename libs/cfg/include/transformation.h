@@ -3,7 +3,7 @@
 
 #include <QPainter>
 #include <QWidget>
-#include "Dimensions.h"
+#include "dimensions.h"
 
 class Transformation : public QWidget {
     public:

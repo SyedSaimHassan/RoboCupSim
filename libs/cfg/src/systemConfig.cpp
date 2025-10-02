@@ -1,4 +1,4 @@
-#include "SystemConfig.h"
+#include "systemConfig.h"
 
 // Ball config
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(0.0f, 0.0f);
