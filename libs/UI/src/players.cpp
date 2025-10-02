@@ -1,4 +1,4 @@
-#include <Players.h>
+#include <players.h>
 
 void Players::Render(QPainter *painter){
     painter->setBrush(Qt::blue);
@@ -12,7 +12,7 @@ void Players::Render(QPainter *painter){
 }
 
 void Players::drawPlayers(QPainter *painter, int playerNumber){
-    painter->drawEllipse(playerPositions[playerNumber-1],0.09,0.09);
+    painter->drawEllipse(playerPositions[playerNumber-1],cfg::SystemConfig::robotRadius,cfg::SystemConfig::robotRadius);
 
     painter->drawLine(playerPositions[playerNumber-1],QPointF(playerPositions[playerNumber-1].x()*cos(playerGyroAngle[playerNumber-1]),playerPositions[playerNumber-1].y()*sin(playerGyroAngle[playerNumber-1])));
 }
