@@ -8,7 +8,7 @@ struct SystemConfig{
     static constexpr int numRobots = 12;
 
     // Ball
-    static const Eigen::Vector3d initBallPosition;
+    static const Eigen::Vector2d initBallPosition;
     static const float ballRadius;
     
     // Robots
@@ -16,9 +16,7 @@ struct SystemConfig{
 
     // Robot Team
     static std::vector<Eigen::Vector3d> teamOneStartFormation;
-    static std::vector<Eigen::Vector3d> teamTwoStartFormation;
-
-    
+    static std::vector<Eigen::Vector3d> teamTwoStartFormation;   
 };
 }
 
