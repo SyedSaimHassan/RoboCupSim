@@ -6,19 +6,18 @@
 #include "dimensions.h"
 
 class Transformation : public QWidget {
-    public:
+ public:
+  static double s;
+  static double offSetX;
+  static double offSetY;
 
-        static double s;
-        static double offSetX;
-        static double offSetY;
+  static Transformation& instance();
 
-        static Transformation& instance();
-    
-        inline void transformation(QPainter *p);
+  static void transformation(QPainter* p, const QRect& area);
 
-        QPointF meterToPixel(double mx, double my);
+  QPointF meterToPixel(double mx, double my);
 
-        QPointF pixelToMeter(double px, double py);
+  QPointF pixelToMeter(double px, double py);
 };
 
 #endif
