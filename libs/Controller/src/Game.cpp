@@ -59,6 +59,7 @@ void Game::keyControls() {
         break;
     }
   }
+  this->Players.setPose((this->Players.getPose(SelectedPlayerId)+PlayerSpeed),SelectedPlayerId);
 }
 void Game::handleInsertKey(int key) { PlayerKeys.insert(key); }
 void Game::handleRemoveKey(int key) { PlayerKeys.remove(key); }
