@@ -46,16 +46,16 @@ void Game::keyControls() {
         break;
 
       case Qt::Key_W:
-        PlayerSpeed.y() = cfg::SystemConfig::robotSpeed / 60;
+        PlayerSpeed.y() = cfg::SystemConfig::playerMaxSpeed / 60;
         break;
       case Qt::Key_S:
-        PlayerSpeed.y() = -cfg::SystemConfig::robotSpeed / 60;
+        PlayerSpeed.y() = -cfg::SystemConfig::playerMaxSpeed / 60;
         break;
       case Qt::Key_D:
-        PlayerSpeed.x() = cfg::SystemConfig::robotSpeed / 60;
+        PlayerSpeed.x() = cfg::SystemConfig::playerMaxSpeed/ 60;
         break;
       case Qt::Key_A:
-        PlayerSpeed.x() = -cfg::SystemConfig::robotSpeed / 60;
+        PlayerSpeed.x() = -cfg::SystemConfig::playerMaxSpeed / 60;
         break;
     }
   }
