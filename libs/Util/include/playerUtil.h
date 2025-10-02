@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef PLAYERUTIL_H
+#define PLAYERUTIL_H
 //CPP libraries
 #include <cmath>
 #include <vector>
@@ -14,7 +14,9 @@ namespace util{
 
 double wrapAngle(double angle);
 double euclideanDistance(QPointF p1,QPointF p2);
-bool withinRadius(double p1, double p2);
+bool withinRadius(QPointF p1, QPointF p2);
 
 
 }
+
+#endif
