@@ -4,8 +4,11 @@
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(0.0f, 0.0f);
 const float cfg::SystemConfig::ballRadius = 0.05f;
 
-// Robot config
+// Robot config (speed is in m/s)
 const float cfg::SystemConfig::robotRadius = 0.204f;
+const float cfg::SystemConfig::playerMaxSpeed = 2.0f;
+// const float cfg::SystemConfig::playerMaxAcceleration = 0.0f;
+// const float cfg::SystemConfig::playerMaxShootForce = 0.0f;
 
 // Team 1 initial formation
 std::vector<Eigen::Vector3d> cfg::SystemConfig::teamOneStartFormation = []() {

@@ -13,6 +13,9 @@ struct SystemConfig{
     
     // Robots
     static const float robotRadius;
+    static const float playerMaxSpeed;
+    // static const float playerMaxAcceleration;
+    // static const float playerMaxShootForce;
 
     // Robot Team
     static std::vector<Eigen::Vector3d> teamOneStartFormation;
