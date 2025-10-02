@@ -9,6 +9,7 @@
 #include <QKeyEvent>
 #include <iostream>
 #include <vector>
+#include "Dimensions.h"
 
 #define To_Be_Implemented int
 
