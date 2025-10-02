@@ -11,15 +11,20 @@ void Ball::drawBall(QPainter* painter) {
   painter->drawEllipse(Cords, ballDia, ballDia);
 }
 void Ball::checkOutOfMap() {
-  if (ballPos.x() + cfg::SystemConfig::ballRadius * 2 > cfg::Dimensions::fieldWidth / 2) {
+  if ((ballPos.x() + (cfg::SystemConfig::ballRadius * 2)) > (cfg::Dimensions::fieldWidth / 2)) {
     ballPos.x() = (cfg::Dimensions::fieldWidth / 2) - (cfg::SystemConfig::ballRadius * 2);
+    ballV.x() *= -1;
   } else if (ballPos.x() < -cfg::Dimensions::fieldWidth / 2) {
     ballPos.x() = (-cfg::Dimensions::fieldWidth / 2);
+    ballV.x() *= -1;
   };
-  if (ballPos.y() + cfg::SystemConfig::ballRadius * 2 > cfg::Dimensions::fieldHeight / 2) {
+  if (ballPos.y() > cfg::Dimensions::fieldHeight / 2) {
     ballPos.y() = (cfg::Dimensions::fieldHeight / 2) - (cfg::SystemConfig::ballRadius * 2);
-  } else if (ballPos.y() < -cfg::Dimensions::fieldHeight / 2) {
-    ballPos.y() = (-cfg::Dimensions::fieldWidth / 2);
+    ballV.y() *= -1;
+  } else if (ballPos.y() - (cfg::SystemConfig::ballRadius * 2) <=
+             -cfg::Dimensions::fieldHeight / 2) {
+    ballPos.y() = (-cfg::Dimensions::fieldHeight / 2) + (cfg::SystemConfig::ballRadius * 2);
+    ballV.y() *= -1;
   }
 }
 void Ball::moveBall() {
@@ -35,6 +40,5 @@ void Ball::DebugMove(float x, float y) {
   // std::cout << x << " " << y << std::endl;
   ballV.x() += x;
   ballV.y() += y;
-  std::cout << ballV.x() << " " << ballV.y() << std::endl;
 }
 }  // namespace Ball

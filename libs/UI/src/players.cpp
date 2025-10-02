@@ -1,20 +1,23 @@
 #include <players.h>
-
+#include <iostream>
 void Players::Render(QPainter *painter) {
   painter->setBrush(Qt::blue);
   painter->setPen(QPen(Qt::black, 0.05));
   for (int i = 1; i <= int(cfg::SystemConfig::numRobots / 2); i++) {
     painter->save();
-    painter->rotate(playerGyroAngle[i - 1]);
+    QPointF pos = playerPositions[i - 1];
+    painter->translate(pos);
+    painter->rotate(playerGyroAngle[i - 1] * 180.0 / M_PI);
+
     Players::drawPlayers(painter, i);
     painter->restore();
   }
 }
 
 void Players::drawPlayers(QPainter *painter, int playerNumber) {
-  painter->drawEllipse(playerPositions[playerNumber - 1], cfg::SystemConfig::robotRadius,
+  painter->drawEllipse(QPointF(0, 0), cfg::SystemConfig::robotRadius,
                        cfg::SystemConfig::robotRadius);
-  QPointF start = playerPositions[playerNumber - 1];
+  QPointF start = QPointF(0, 0);
   qreal r = cfg::SystemConfig::robotRadius;
   qreal angle = playerGyroAngle[playerNumber - 1];
 
@@ -27,6 +30,7 @@ void Players::setPose(Eigen::Vector3d pose, int playerID = 0) {
   if (!playerID) {
     return;
   }
+  std::cout << "[Players::setPose]" << pose.x() << " " << pose.y() << " " << pose.z() << std::endl;
   playerPositions[playerID - 1].setX(pose.x());
   playerPositions[playerID - 1].setY(pose.y());
   playerGyroAngle[playerID - 1] = pose.z();
