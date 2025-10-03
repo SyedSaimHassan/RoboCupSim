@@ -30,7 +30,7 @@ void Players::setPose(Eigen::Vector3d pose, int playerID = 0) {
   if (!playerID) {
     return;
   }
-  std::cout << "[Players::setPose]" << pose.x() << " " << pose.y() << " " << pose.z() << std::endl;
+  //std::cout << "[Players::setPose]" << pose.x() << " " << pose.y() << " " << pose.z() << std::endl;
   playerPositions[playerID - 1].setX(pose.x());
   playerPositions[playerID - 1].setY(pose.y());
   playerGyroAngle[playerID - 1] = pose.z();
