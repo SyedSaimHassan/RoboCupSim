@@ -64,8 +64,7 @@ void Players::movePlayer(int playerID = 0) {
   }
   playerVelocities[playerID - 1].y() += playerYDec;
 
-  playerVelocities[playerID - 1].y() += playerYDec;
-    float playerZDec = std::min(std::abs(float(playerVelocities[playerID - 1].z())),
+  float playerZDec = std::min(std::abs(float(playerVelocities[playerID - 1].z())),
                               cfg::SystemConfig::playerMaxOmegaAcceleration);
   if (playerVelocities[playerID - 1].z() > 0) {
     playerZDec *= -1;

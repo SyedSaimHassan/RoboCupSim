@@ -64,7 +64,7 @@ void Game::handlePlayer() {
         break;
     }
   }
-  std::cout << "[Controller::Game::handlePlayer] Player Z = " << PlayerPos.z() << std::endl;
+
   ;
   this->Players_.SetPlayerV(PlayerVel, SelectedPlayerId);
 }
