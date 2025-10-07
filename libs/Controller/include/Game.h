@@ -10,13 +10,15 @@
 #include <iostream>
 #include <vector>
 #include <Eigen/Dense>
+#include <cmath>
 #include "dimensions.h"
 #include "players.h"
 #include "transformation.h"
 #include "ball.h"
 #include "playingField.h"
 #define To_Be_Implemented int
-#define Div 1/60
+#define dt 1/60
+
 namespace Controller {
 enum class State { Kickoff, Playing, Paused, Foul, Finished };
 class Game : public QWidget {
@@ -34,6 +36,7 @@ class Game : public QWidget {
   void handleInsertKey(int Key);
   void handleRemoveKey(int Key);
   void keyControls();
+  void handlePlayer();
   QSet<int> PlayerKeys;
   int SelectedPlayerId = 0;
 
@@ -42,5 +45,7 @@ class Game : public QWidget {
 };
 
 }  // namespace Controller
+
+
 
 #endif
