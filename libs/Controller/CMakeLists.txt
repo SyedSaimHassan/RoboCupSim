@@ -28,4 +28,5 @@ target_link_libraries(GameController PUBLIC
     config
     Ball
     VisualsLib
+    PlayerManager
 )
