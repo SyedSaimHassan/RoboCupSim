@@ -5,7 +5,7 @@ void Game::handlePlayer() {
   float PlayerCosX = cos(1);
   float PlayerSinY = sin(1);
   float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
-  float PlayerRadianAcc = cfg::SystemConfig::playerMaxRotation * dt;
+  float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
   for (int key : PlayerKeys) {
     switch (key) {
         // Selecting Player

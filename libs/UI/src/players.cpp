@@ -63,7 +63,14 @@ void Players::movePlayer(int playerID = 0) {
     playerYDec *= -1;
   }
   playerVelocities[playerID - 1].y() += playerYDec;
-  playerVelocities[playerID - 1].z() = 0;
+
+  playerVelocities[playerID - 1].y() += playerYDec;
+    float playerZDec = std::min(std::abs(float(playerVelocities[playerID - 1].z())),
+                              cfg::SystemConfig::playerMaxOmegaAcceleration);
+  if (playerVelocities[playerID - 1].z() > 0) {
+    playerZDec *= -1;
+  }
+  playerVelocities[playerID - 1].z() += playerZDec;
 }
 
 Eigen::Vector3d Players::getPlayerV(int PlayerID) { return playerVelocities[PlayerID - 1]; }
