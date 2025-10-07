@@ -17,12 +17,12 @@ void Game::paintEvent(QPaintEvent *event) {
   Transformation::instance().transformation(&painter, rect());
   keyControls();
   drawField(&painter);
-  drawPlayers(&painter);
+  ManagePlayers(&painter);
   drawBall(&painter);
 }
 
 void Game::drawField(QPainter *painter) { this->Field.CreateField(painter); }
-void Game::drawPlayers(QPainter *painter) { this->Players_.Render(painter); }
+void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter); }
 void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 
 void Game::keyPressEvent(QKeyEvent *event) { handleInsertKey(event->key()); }

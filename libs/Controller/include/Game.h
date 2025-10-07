@@ -12,10 +12,10 @@
 #include <Eigen/Dense>
 #include <cmath>
 #include "dimensions.h"
-#include "players.h"
 #include "transformation.h"
 #include "ball.h"
 #include "playingField.h"
+#include "playerManager.h"
 #define To_Be_Implemented int
 #define dt 1/60
 
@@ -24,11 +24,11 @@ enum class State { Kickoff, Playing, Paused, Foul, Finished };
 class Game : public QWidget {
  private:
   State gameState = State::Kickoff;
-  Players Players_;
+  Player::PlayerManager Players_;
   Ball::Ball Ball_;
   UI Field; 
   void drawField(QPainter *painter);
-  void drawPlayers(QPainter *painter);
+  void ManagePlayers(QPainter *painter);
   void drawBall(QPainter *painter);
   void paintEvent(QPaintEvent *) override;
   void keyPressEvent(QKeyEvent *event) override;
