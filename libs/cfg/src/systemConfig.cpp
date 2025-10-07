@@ -9,7 +9,7 @@ const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(1.0f
 const float cfg::SystemConfig::robotMass = 1.5f;
 const float cfg::SystemConfig::robotRadius = 0.204f;
 const float cfg::SystemConfig::playerMaxSpeed = 2.0f;
-const float cfg::SystemConfig::playerMaxAcceleration = 0.1f;
+const float cfg::SystemConfig::playerMaxAcceleration = 1.5f;
 const float cfg::SystemConfig::playerMaxOmegaAcceleration = 0.1f;
 // const float cfg::SystemConfig::playerMaxShootForce = 0.0f;
 
