@@ -13,7 +13,9 @@ const float cfg::SystemConfig::robotMass = 1.5f;
 const float cfg::SystemConfig::robotRadius = 0.204f;
 const float cfg::SystemConfig::playerMaxSpeed = 2.0f;
 const float cfg::SystemConfig::playerMaxRotation = 0.5f;
+const float cfg::SystemConfig::ballPlayerElasticity = 0.5f;
 const float cfg::SystemConfig::playerMaxAcceleration = 0.1f;
+
 const float cfg::SystemConfig::playerMaxOmegaAcceleration = 0.1f;
 // const float cfg::SystemConfig::playerMaxShootForce = 0.0f;
 
@@ -54,6 +56,8 @@ std::vector<Eigen::Vector3d> cfg::SystemConfig::teamTwoPlayerVel = []() {
   return v;
 }();
 
+std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamOneWayPoints = {{},{},{},{}};
+std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamTwoWayPoints = {{},{},{},{}};
 // Team 1 initial formation
 std::vector<Eigen::Vector3d> cfg::SystemConfig::teamOneStartFormation = []() {
   std::vector<Eigen::Vector3d> v(SystemConfig::numRobots);
