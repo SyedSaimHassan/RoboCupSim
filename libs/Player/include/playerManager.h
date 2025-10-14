@@ -19,7 +19,7 @@
 // Self made libraries
 #include "players.h"
 #include "systemConfig.h"
-#define dt 1/cfg::SystemConfig::frameRate
+#define dt 1 / cfg::SystemConfig::frameRate
 namespace Player {
 
 class PlayerManager : public Players {
@@ -34,6 +34,7 @@ class PlayerManager : public Players {
   void deflectPlayers(int PlayerID1, int PlayerID2);
   void deflectBall(int PlayerID);
 
+  int SelectedPlayer = 0;
   void handleAuto(int PlayerInd);
   void handleManual(int PlayerInd);
   void ManagePlayers(QPainter *p, QSet<int> Keys);
