@@ -5,12 +5,12 @@ namespace Controller {
 Game::Game(QWidget *parent) : QWidget(parent) {
   std::cout << "[Controller::Game::Game] Startup Successfull" << std::endl;
   for (int _ = 0; _ < int(cfg::SystemConfig::numRobots / 2); ++_) {
-    PlayerStates.push_back(RobotState::Manual);
+    cfg::SystemConfig::PlayerStates.push_back(cfg::SystemConfig::RobotState::Manual);
   }
   this->resize(QGuiApplication::primaryScreen()->geometry().size());
   QTimer *timer = new QTimer(this);
   connect(timer, &QTimer::timeout, this, [this]() { this->update(); });
-  timer->start(16);
+  timer->start(int((1 / 60) * 1000));
 }
 
 void Game::paintEvent(QPaintEvent *event) {

@@ -27,10 +27,10 @@ void Game::handlePlayer() {
   for (int key : PlayerKeys) {
     switch (key) {
       case Qt::Key_K:
-        PlayerStates[SelectedPlayerId - 1] = RobotState::Manual;
+        cfg::SystemConfig::PlayerStates[SelectedPlayerId - 1] = cfg::SystemConfig::RobotState::Manual;
         break;
       case Qt::Key_L:
-        PlayerStates[SelectedPlayerId - 1] = RobotState::Autonomous;
+        cfg::SystemConfig::PlayerStates[SelectedPlayerId - 1] = cfg::SystemConfig::RobotState::Autonomous;
         break;
     }
   }
