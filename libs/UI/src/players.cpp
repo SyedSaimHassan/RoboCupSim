@@ -5,7 +5,8 @@ void Players::Render(QPainter *painter) {
   painter->setPen(QPen(Qt::black, 0.05));
   for (int i = 1; i <= int(cfg::SystemConfig::numRobots / 2); i++) {
     painter->save();
-    QPointF pos = playerPositions[i - 1];
+    QPointF pos = QPointF(cfg::SystemConfig::teamOnePlayerPos[i - 1].x(),
+                          cfg::SystemConfig::teamOnePlayerPos[i - 1].y());
     painter->translate(pos);
     painter->rotate(playerGyroAngle[i - 1]);
 
@@ -31,12 +32,13 @@ void Players::setPose(Eigen::Vector3d pose, int playerID = 0) {
     return;
   }
 
-  playerPositions[playerID - 1].setX(pose.x());
-  playerPositions[playerID - 1].setY(pose.y());
+  cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() = (pose.x());
+  cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() = (pose.y());
   playerGyroAngle[playerID - 1] = pose.z();
 }
 
 Eigen::Vector3d Players::getPose(int playerID) {
-  return Eigen::Vector3d(playerPositions[playerID - 1].x(), playerPositions[playerID - 1].y(),
+  return Eigen::Vector3d(cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x(),
+                         cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y(),
                          playerGyroAngle[playerID - 1]);
 }
