@@ -2,8 +2,8 @@
 
 namespace Controller {
 void Game::handlePlayer() {
-  float PlayerCosX = cos(1);
-  float PlayerSinY = sin(1);
+  // float PlayerCosX = cos(1);
+  // float PlayerSinY = sin(1);
   float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
   float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
   for (int key : PlayerKeys) {
@@ -38,7 +38,6 @@ void Game::handlePlayer() {
                              sin(PlayerPos.z() + qDegreesToRadians(270.0)), 0);
   Eigen::Vector3d leftTheta(cos(PlayerPos.z() + qDegreesToRadians(90.0)),
                             sin(PlayerPos.z() + qDegreesToRadians(90.0f)), 0);
-
   for (int key : PlayerKeys) {
     switch (key) {
       case Qt::Key_W:
@@ -65,6 +64,9 @@ void Game::handlePlayer() {
     }
   }
 
+  // std::cout << "[Controller::Game::handlePlayer] " << PlayerVel.x() << " " << PlayerVel.y() << "
+  // "
+  // << PlayerVel.z() << std::endl;
   ;
   this->Players_.SetPlayerV(PlayerVel, SelectedPlayerId);
 }

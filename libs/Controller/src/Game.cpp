@@ -18,6 +18,7 @@ void Game::paintEvent(QPaintEvent *event) {
   keyControls();
   drawField(&painter);
   ManagePlayers(&painter);
+  
   drawBall(&painter);
 }
 
@@ -27,9 +28,7 @@ void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 
 void Game::keyPressEvent(QKeyEvent *event) { handleInsertKey(event->key()); }
 void Game::keyReleaseEvent(QKeyEvent *event) { handleRemoveKey(event->key()); }
-void Game::keyControls() {
-  handlePlayer();
-}
+void Game::keyControls() { handlePlayer(); }
 void Game::handleInsertKey(int key) { PlayerKeys.insert(key); }
 void Game::handleRemoveKey(int key) { PlayerKeys.remove(key); }
 
