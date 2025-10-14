@@ -30,6 +30,7 @@ struct SystemConfig {
   static std::vector<Eigen::Vector3d> teamTwoPlayerPos;
   static std::vector<Eigen::Vector3d> teamOnePlayerVel;
   static std::vector<Eigen::Vector3d> teamTwoPlayerVel;
+  static std::vector<std::vector<Eigen::Vector3d>> wayPoints;
 
   // Robot Team
   static std::vector<Eigen::Vector3d> teamOneStartFormation;
