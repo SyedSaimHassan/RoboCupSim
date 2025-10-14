@@ -24,55 +24,19 @@ void Game::handlePlayer() {
         // End of player Selection
     }
   }
+  this->Players_.SelectedPlayer = SelectedPlayerId;
   for (int key : PlayerKeys) {
     switch (key) {
       case Qt::Key_K:
-        cfg::SystemConfig::PlayerStates[SelectedPlayerId - 1] = cfg::SystemConfig::RobotState::Manual;
+        cfg::SystemConfig::PlayerStates[SelectedPlayerId - 1] =
+            cfg::SystemConfig::RobotState::Manual;
         break;
       case Qt::Key_L:
-        cfg::SystemConfig::PlayerStates[SelectedPlayerId - 1] = cfg::SystemConfig::RobotState::Autonomous;
+        cfg::SystemConfig::PlayerStates[SelectedPlayerId - 1] =
+            cfg::SystemConfig::RobotState::Autonomous;
         break;
     }
   }
-  float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
-  float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
-  Eigen::Vector3d PlayerPos = this->Players_.getPose(SelectedPlayerId);
-  Eigen::Vector3d PlayerVel = this->Players_.getPlayerV(SelectedPlayerId);
-
-  Eigen::Vector3d forwardTheta(cos(PlayerPos.z()), sin(PlayerPos.z()), 0);
-  Eigen::Vector3d backwardTheta(cos(PlayerPos.z() + qDegreesToRadians(180.0)),
-                                sin(PlayerPos.z() + qDegreesToRadians(180.0)), 0);
-  Eigen::Vector3d rightTheta(cos(PlayerPos.z() + qDegreesToRadians(270.0)),
-                             sin(PlayerPos.z() + qDegreesToRadians(270.0)), 0);
-  Eigen::Vector3d leftTheta(cos(PlayerPos.z() + qDegreesToRadians(90.0)),
-                            sin(PlayerPos.z() + qDegreesToRadians(90.0f)), 0);
-  for (int key : PlayerKeys) {
-    switch (key) {
-      case Qt::Key_W:
-        PlayerVel += PlayerMaxAcc * forwardTheta;
-        break;
-      case Qt::Key_S:
-        PlayerVel += PlayerMaxAcc * backwardTheta;
-        break;
-      case Qt::Key_D:
-        PlayerVel += PlayerMaxAcc * rightTheta;
-        break;
-      case Qt::Key_A:
-        PlayerVel += PlayerMaxAcc * leftTheta;
-        break;
-      case Qt::Key_C:
-        PlayerVel += PlayerRadianAcc * (Eigen::Vector3d(0, 0, 1));
-        break;
-      case Qt::Key_X:
-        PlayerVel -= PlayerRadianAcc * (Eigen::Vector3d(0, 0, 1));
-        break;
-      case Qt::Key_M:
-        PlayerVel = Eigen::Vector3d(0, 0, 0);
-        break;
-    }
-  }
-
-  this->Players_.SetPlayerV(PlayerVel, SelectedPlayerId);
 }
 
 }  // namespace Controller

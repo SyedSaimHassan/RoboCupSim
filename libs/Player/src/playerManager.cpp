@@ -62,6 +62,7 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
 }
 void PlayerManager::handleAuto(int PlayerInd) {}
 void PlayerManager::handleManual(int PlayerInd) {
+  if (PlayerInd != SelectedPlayer) return;
   float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
   float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
   Eigen::Vector3d PlayerPos = this->getPose(PlayerInd);
