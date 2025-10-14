@@ -15,7 +15,7 @@ Eigen::Vector3d Tra_Tra::traj(int index){
     if (remaing_dis>dis_travl){
         finalvelX=std::min(currentvel.x()+maxaccincom*dt,maxvelincom);
         finalvelX=std::min(currentvel.x()+maxaccincom*dt,maxvelincom);
-    }   
+    }    
     else{
         finalvelX=std::max(currentvel.x()-maxaccincom*dt,0.0);
         finalvelX=std::max(currentvel.x()-maxaccincom*dt,0.0);
