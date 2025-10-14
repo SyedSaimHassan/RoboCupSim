@@ -1,6 +1,7 @@
 #include "systemConfig.h"
 
 const float cfg::SystemConfig::frameRate = 60;
+std::vector<SystemConfig::RobotState> SystemConfig::PlayerStates;
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;
