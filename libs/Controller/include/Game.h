@@ -17,17 +17,17 @@
 #include "playingField.h"
 #include "playerManager.h"
 #define To_Be_Implemented int
-#define dt 1 / 60
-
+#define dt 1/cfg::SystemConfig::frameRate
 namespace Controller {
 enum class State { Kickoff, Playing, Paused, Foul, Finished };
-enum class RobotState {Autonomous, Manual};
+
 class Game : public QWidget {
  private:
   State gameState = State::Kickoff;
   Player::PlayerManager Players_;
   Ball::Ball Ball_;
-  UI Field;
+  UI Field; 
+
   void drawField(QPainter *painter);
   void ManagePlayers(QPainter *painter);
   void drawBall(QPainter *painter);
