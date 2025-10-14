@@ -17,7 +17,7 @@
 #include "playingField.h"
 #include "playerManager.h"
 #define To_Be_Implemented int
-#define dt 1/60
+#define dt 1 / 60
 
 namespace Controller {
 enum class State { Kickoff, Playing, Paused, Foul, Finished };
@@ -26,7 +26,7 @@ class Game : public QWidget {
   State gameState = State::Kickoff;
   Player::PlayerManager Players_;
   Ball::Ball Ball_;
-  UI Field; 
+  UI Field;
   void drawField(QPainter *painter);
   void ManagePlayers(QPainter *painter);
   void drawBall(QPainter *painter);
@@ -45,7 +45,5 @@ class Game : public QWidget {
 };
 
 }  // namespace Controller
-
-
 
 #endif
