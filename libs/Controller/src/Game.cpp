@@ -4,6 +4,9 @@ namespace Controller {
 
 Game::Game(QWidget *parent) : QWidget(parent) {
   std::cout << "[Controller::Game::Game] Startup Successfull" << std::endl;
+  for (int _ = 0; _ < int(cfg::SystemConfig::numRobots / 2); ++_) {
+    cfg::SystemConfig::PlayerStates.push_back(cfg::SystemConfig::RobotState::Manual);
+  }
   this->resize(QGuiApplication::primaryScreen()->geometry().size());
   QTimer *timer = new QTimer(this);
   connect(timer, &QTimer::timeout, this, [this]() { this->update(); });
@@ -22,8 +25,9 @@ void Game::paintEvent(QPaintEvent *event) {
   drawBall(&painter);
 }
 
-void Game::drawField(QPainter *painter) { this->Field.CreateField(painter); }
-void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter); }
+void Game::
+drawField(QPainter *painter) { this->Field.CreateField(painter); }
+void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter, PlayerKeys); }
 void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 
 void Game::keyPressEvent(QKeyEvent *event) { handleInsertKey(event->key()); }

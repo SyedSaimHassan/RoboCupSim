@@ -10,6 +10,9 @@ double wrapAngle(double angle) {
 double euclideanDistance(QPointF p1, QPointF p2) {
   return pow(pow(p1.x() - p2.x(), 2) + pow(p1.y() - p2.y(), 2), 0.5);
 }
+double euclideanDistanceVector(Eigen::Vector3d p1, Eigen::Vector3d p2) {
+  return pow(pow(p1.x() - p2.x(), 2) + pow(p1.y() - p2.y(), 2), 0.5);
+}
 
 bool withinRadius(QPointF p1, QPointF p2) {
   if (util::euclideanDistance(p1, p2) <= 0.5) {
