@@ -51,10 +51,9 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
 
   setPose(pos1, PlayerID1);
   setPose(pos2, PlayerID2);
-
-  
 }
 void PlayerManager::movePlayer(int playerID = 0) {
+  // detecting collision
   for (int RobotIndex1 = 1; RobotIndex1 <= int(cfg::SystemConfig::numRobots / 2); RobotIndex1++) {
     for (int RobotIndex2 = RobotIndex1 + 1; RobotIndex2 <= int(cfg::SystemConfig::numRobots / 2);
          RobotIndex2++) {
@@ -66,7 +65,7 @@ void PlayerManager::movePlayer(int playerID = 0) {
       }
     }
   }
-  std::cout << getPlayerV(2).x() << ' ' << getPlayerV(2).y() << std::endl;
+  // -------------x-------------x----------
 
   playerPositions[playerID - 1].setX(playerPositions[playerID - 1].x() +
                                      playerVelocities[playerID - 1].x());
