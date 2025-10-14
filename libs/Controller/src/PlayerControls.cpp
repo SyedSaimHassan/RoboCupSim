@@ -1,11 +1,8 @@
 #include "Game.h"
 
 namespace Controller {
+
 void Game::handlePlayer() {
-  // float PlayerCosX = cos(1);
-  // float PlayerSinY = sin(1);
-  float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
-  float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
   for (int key : PlayerKeys) {
     switch (key) {
         // Selecting Player
@@ -27,7 +24,18 @@ void Game::handlePlayer() {
         // End of player Selection
     }
   }
-
+  for (int key : PlayerKeys) {
+    switch (key) {
+      case Qt::Key_K:
+        PlayerStates[SelectedPlayerId - 1] = RobotState::Manual;
+        break;
+      case Qt::Key_L:
+        PlayerStates[SelectedPlayerId - 1] = RobotState::Autonomous;
+        break;
+    }
+  }
+  float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
+  float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
   Eigen::Vector3d PlayerPos = this->Players_.getPose(SelectedPlayerId);
   Eigen::Vector3d PlayerVel = this->Players_.getPlayerV(SelectedPlayerId);
 
@@ -64,10 +72,6 @@ void Game::handlePlayer() {
     }
   }
 
-  // std::cout << "[Controller::Game::handlePlayer] " << PlayerVel.x() << " " << PlayerVel.y() << "
-  // "
-  // << PlayerVel.z() << std::endl;
-  ;
   this->Players_.SetPlayerV(PlayerVel, SelectedPlayerId);
 }
 

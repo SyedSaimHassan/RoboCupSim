@@ -33,6 +33,8 @@ class PlayerManager : public Players {
   void deflectPlayers(int PlayerID1, int PlayerID2);
   void deflectBall(int PlayerID);
 
+ void handleAuto(int PlayerInd);
+ void handleManual(int PlayerInd);
   void ManagePlayers(QPainter *p);
   void movePlayer(int playerID);
   Eigen::Vector3d getPlayerV(int PlayerID);
