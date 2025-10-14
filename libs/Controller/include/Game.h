@@ -21,6 +21,7 @@
 
 namespace Controller {
 enum class State { Kickoff, Playing, Paused, Foul, Finished };
+enum class RobotState {Autonomous, Manual};
 class Game : public QWidget {
  private:
   State gameState = State::Kickoff;

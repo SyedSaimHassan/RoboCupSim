@@ -1,7 +1,7 @@
 #include "playerManager.h"
 namespace Player {
-void PlayerManager::ManagePlayers(QPainter *p) {
-  for (int RobotIndex = 1; RobotIndex <= int(cfg::SystemConfig::numRobots / 2); RobotIndex++) {
+void PlayerManager::ManagePlayers(QPainter *p,QSet<int> Keys) {
+  for (int RobotIndex = 1; RobotIndex < int(cfg::SystemConfig::numRobots / 2); RobotIndex++) {
     movePlayer(RobotIndex);
   }
   Render(p);
@@ -59,6 +59,8 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
   
 
 }
+void PlayerManager::handleAuto(int PlayerInd) {}
+void PlayerManager::handleManual(int PlayerInd) {}
 void PlayerManager::movePlayer(int playerID = 0) {
   // detecting collision
   for (int RobotIndex1 = 1; RobotIndex1 <= int(cfg::SystemConfig::numRobots / 2); RobotIndex1++) {
