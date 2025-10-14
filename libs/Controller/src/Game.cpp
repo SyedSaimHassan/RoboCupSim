@@ -10,7 +10,7 @@ Game::Game(QWidget *parent) : QWidget(parent) {
   this->resize(QGuiApplication::primaryScreen()->geometry().size());
   QTimer *timer = new QTimer(this);
   connect(timer, &QTimer::timeout, this, [this]() { this->update(); });
-  timer->start(int((1 / 60) * 1000));
+  timer->start(16);
 }
 
 void Game::paintEvent(QPaintEvent *event) {
@@ -25,7 +25,8 @@ void Game::paintEvent(QPaintEvent *event) {
   drawBall(&painter);
 }
 
-void Game::drawField(QPainter *painter) { this->Field.CreateField(painter); }
+void Game::
+drawField(QPainter *painter) { this->Field.CreateField(painter); }
 void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter, PlayerKeys); }
 void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 

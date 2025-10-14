@@ -19,16 +19,15 @@
 // Self made libraries
 #include "players.h"
 #include "systemConfig.h"
+#include "TrapezoidalTrajectory.h"
 #define dt 1 / cfg::SystemConfig::frameRate
 namespace Player {
 
 class PlayerManager : public Players {
  private:
-  std::vector<Eigen::Vector3d> playerVelocities = {
-      Eigen::Vector3d(0, 0, 0), Eigen::Vector3d(0, 0, 0), Eigen::Vector3d(0, 0, 0),
-      Eigen::Vector3d(0, 0, 0)};
-  QSet<int> PlayerKeys;
 
+  QSet<int> PlayerKeys;
+    Traj::Trapezoidal_Traj Trajectory;
  public:
   void detectCollision();
   void deflectPlayers(int PlayerID1, int PlayerID2);

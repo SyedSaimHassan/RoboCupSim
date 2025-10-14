@@ -33,9 +33,12 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
 
   // deflection
 }
-void PlayerManager::handleAuto(int PlayerInd) {}
+void PlayerManager::handleAuto(int PlayerInd) {
+  (Trajectory.SetVelocityFromTraj(PlayerInd), PlayerInd);
+}
 void PlayerManager::handleManual(int PlayerInd) {
   if (PlayerInd != SelectedPlayer) return;
+
   float PlayerMaxAcc = cfg::SystemConfig::playerMaxAcceleration * dt;
   float PlayerRadianAcc = cfg::SystemConfig::playerMaxOmegaAcceleration * dt;
   Eigen::Vector3d PlayerPos = this->getPose(PlayerInd);
@@ -88,45 +91,40 @@ void PlayerManager::movePlayer(int playerID = 0) {
     default:
       break;
   }
+  cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() =
+      (cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() +
+       cfg::SystemConfig::teamOnePlayerVel[playerID - 1].x());
+  cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() =
+      (cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() +
+       cfg::SystemConfig::teamOnePlayerVel[playerID - 1].y());
+  playerGyroAngle[playerID - 1] = (std::fmod(
+      playerGyroAngle[playerID - 1] + cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(), 6.0));
 
-  playerPositions[playerID - 1].setX(playerPositions[playerID - 1].x() +
-                                     playerVelocities[playerID - 1].x());
-  playerPositions[playerID - 1].setY(playerPositions[playerID - 1].y() +
-                                     playerVelocities[playerID - 1].y());
-  playerGyroAngle[playerID - 1] =
-      playerGyroAngle[playerID - 1] + playerVelocities[playerID - 1].z();
+  auto applyDecel = [](float vel, float maxAccel) {
+    float decel = std::min(std::abs(vel), maxAccel);
+    if (vel > 0) decel *= -1;
+    return vel + decel;
+  };
 
-  // Decel for x
-  float playerXDec = std::min(std::abs(float(playerVelocities[playerID - 1].x())),
-                              cfg::SystemConfig::playerMaxAcceleration);
-  if (playerVelocities[playerID - 1].x() > 0) {
-    playerXDec *= -1;
-  }
-  playerVelocities[playerID - 1].x() += playerXDec;
-  // End decel
+  cfg::SystemConfig::teamOnePlayerVel[playerID - 1].x() =
+      applyDecel(cfg::SystemConfig::teamOnePlayerVel[playerID - 1].x(),
+                 cfg::SystemConfig::playerMaxAcceleration);
+  cfg::SystemConfig::teamOnePlayerVel[playerID - 1].y() =
+      applyDecel(cfg::SystemConfig::teamOnePlayerVel[playerID - 1].y(),
+                 cfg::SystemConfig::playerMaxAcceleration);
+  cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z() =
+      applyDecel(cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(),
+                 cfg::SystemConfig::playerMaxOmegaAcceleration);
 
-  float playerYDec = std::min(std::abs(float(playerVelocities[playerID - 1].y())),
-                              cfg::SystemConfig::playerMaxAcceleration);
-  if (playerVelocities[playerID - 1].y() > 0) {
-    playerYDec *= -1;
-  }
-  playerVelocities[playerID - 1].y() += playerYDec;
-
-  float playerZDec = std::min(std::abs(float(playerVelocities[playerID - 1].z())),
-                              cfg::SystemConfig::playerMaxOmegaAcceleration);
-  if (playerVelocities[playerID - 1].z() > 0) {
-    playerZDec *= -1;
-  }
-  playerVelocities[playerID - 1].z() += playerZDec;
-  
   // detecting collision
   for (int RobotIndex1 = 1; RobotIndex1 <= int(cfg::SystemConfig::numRobots / 2); RobotIndex1++) {
     for (int RobotIndex2 = RobotIndex1 + 1; RobotIndex2 <= int(cfg::SystemConfig::numRobots / 2);
          RobotIndex2++) {
       Eigen::Vector3d pos1 = Players::getPose(RobotIndex1);
       Eigen::Vector3d pos2 = Players::getPose(RobotIndex2);
-      if (util::euclideanDistance(playerPositions[RobotIndex1 - 1],
-                                  playerPositions[RobotIndex2 - 1]) <= 0.408) {
+      if (util::euclideanDistanceVector(cfg::SystemConfig::teamOnePlayerPos[RobotIndex1 - 1],
+                                        cfg::SystemConfig::teamOnePlayerPos[RobotIndex2 - 1]) <=
+          0.408) {
         deflectPlayers(RobotIndex1, RobotIndex2);
       }
     }
@@ -134,7 +132,9 @@ void PlayerManager::movePlayer(int playerID = 0) {
   // -------------x-------------x----------//
 }
 
-Eigen::Vector3d PlayerManager::getPlayerV(int PlayerID) { return playerVelocities[PlayerID - 1]; }
+Eigen::Vector3d PlayerManager::getPlayerV(int PlayerID) {
+  return cfg::SystemConfig::teamOnePlayerVel[PlayerID - 1];
+}
 void PlayerManager::SetPlayerV(Eigen::Vector3d PlayerV, int PlayerID) {
   float playerMax = cfg::SystemConfig::playerMaxSpeed;
   float playerMin = -cfg::SystemConfig::playerMaxSpeed;
@@ -143,6 +143,6 @@ void PlayerManager::SetPlayerV(Eigen::Vector3d PlayerV, int PlayerID) {
   PlayerV = Eigen::Vector3d(std::clamp(float(PlayerV.x()), playerMin, playerMax),
                             std::clamp(float(PlayerV.y()), playerMin, playerMax),
                             std::clamp(float(PlayerV.z()), rotationMin, rotationMax));
-  playerVelocities[PlayerID - 1] = PlayerV;
+  cfg::SystemConfig::teamOnePlayerVel[PlayerID - 1] = PlayerV;
 }
 }  // namespace Player
