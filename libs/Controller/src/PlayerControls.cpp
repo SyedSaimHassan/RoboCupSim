@@ -21,7 +21,7 @@ void Game::handlePlayer() {
       case Qt::Key_3:
         SelectedPlayerId = 3;
         break;
-      case Qt::Key_4:
+      case Qt::Key_4:  
         SelectedPlayerId = 4;
         break;
         // End of player Selection
@@ -67,6 +67,7 @@ void Game::handlePlayer() {
 
   ;
   this->Players_.SetPlayerV(PlayerVel, SelectedPlayerId);
+  
 }
 
 }  // namespace Controller
