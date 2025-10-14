@@ -16,6 +16,7 @@
 #include "ball.h"
 #include "playingField.h"
 #include "playerManager.h"
+#include "Collision.h"
 #define To_Be_Implemented int
 #define dt 1/cfg::SystemConfig::frameRate
 namespace Controller {
