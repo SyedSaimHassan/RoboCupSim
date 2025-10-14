@@ -21,7 +21,9 @@ struct SystemConfig {
   static const float robotRadius;
   static const float playerMaxSpeed;
   static const float playerMaxRotation;
+  static const float ballPlayerElasticity;
   static const float playerMaxAcceleration;
+  static const float playerPlayerElasticity;
   static const float playerMaxOmegaAcceleration;
   // static const float playerMaxShootForce;
 
@@ -30,7 +32,8 @@ struct SystemConfig {
   static std::vector<Eigen::Vector3d> teamTwoPlayerPos;
   static std::vector<Eigen::Vector3d> teamOnePlayerVel;
   static std::vector<Eigen::Vector3d> teamTwoPlayerVel;
-  static std::vector<std::vector<Eigen::Vector3d>> wayPoints;
+  static std::vector<std::vector<Eigen::Vector3d>> teamOneWayPoints;
+  static std::vector<std::vector<Eigen::Vector3d>> teamTwoWayPoints;
 
   // Robot Team
   static std::vector<Eigen::Vector3d> teamOneStartFormation;
