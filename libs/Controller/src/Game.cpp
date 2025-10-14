@@ -26,7 +26,7 @@ void Game::paintEvent(QPaintEvent *event) {
 }
 
 void Game::drawField(QPainter *painter) { this->Field.CreateField(painter); }
-void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter); }
+void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter, PlayerKeys); }
 void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
 
 void Game::keyPressEvent(QKeyEvent *event) { handleInsertKey(event->key()); }
