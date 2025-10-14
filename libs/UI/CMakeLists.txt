@@ -2,7 +2,15 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 file(GLOB_RECURSE HEADERS "include/*.h")
 
 add_library(VisualsLib ${SOURCES} ${HEADERS})
-target_link_libraries(VisualsLib PUBLIC UtilsLib config eigen ${GLOBAL_LIBS})
+target_link_libraries(VisualsLib PUBLIC
+    Qt5::Widgets
+    Qt5::Core
+    Qt5::Gui
+    config
+    Ball
+    PlayerManager
+)
+
 target_include_directories(VisualsLib PUBLIC include)
 
 
