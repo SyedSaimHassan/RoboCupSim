@@ -35,6 +35,8 @@ void PlayerManager::detectCollision() {
 QPointF changeHelper(Eigen::Vector3d vector) { return QPointF(vector.x(), vector.y()); }
 
 void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
+
+  //avoiding overlap
   auto pos1 = getPose(PlayerID1);
   auto pos2 = getPose(PlayerID2);
 
@@ -51,6 +53,11 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
 
   setPose(pos1, PlayerID1);
   setPose(pos2, PlayerID2);
+  //avoiding overlap
+
+  //deflection
+  
+
 }
 void PlayerManager::movePlayer(int playerID = 0) {
   // detecting collision
@@ -65,7 +72,7 @@ void PlayerManager::movePlayer(int playerID = 0) {
       }
     }
   }
-  // -------------x-------------x----------
+  // -------------x-------------x----------//
 
   playerPositions[playerID - 1].setX(playerPositions[playerID - 1].x() +
                                      playerVelocities[playerID - 1].x());
