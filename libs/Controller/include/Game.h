@@ -37,6 +37,7 @@ class Game : public QWidget {
   void paintEvent(QPaintEvent *) override;
   void keyPressEvent(QKeyEvent *event) override;
   void keyReleaseEvent(QKeyEvent *event) override;
+  void mousePressEvent(QMouseEvent *event) override;
   void handleInsertKey(int Key);
   void handleRemoveKey(int Key);
   void keyControls();
