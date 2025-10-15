@@ -109,6 +109,7 @@ void PlayerManager::movePlayer(int playerID = 0) {
       break;
     default:
       break;
+
   }
   cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() =
       (cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() +
@@ -117,7 +118,7 @@ void PlayerManager::movePlayer(int playerID = 0) {
       (cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() +
        cfg::SystemConfig::teamOnePlayerVel[playerID - 1].y());
   playerGyroAngle[playerID - 1] = (std::fmod(
-      playerGyroAngle[playerID - 1] + cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(), 6.0));
+      playerGyroAngle[playerID - 1] + cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(), 2*M_PI));
 
   auto applyDecel = [](float vel, float maxAccel) {
     float decel = std::min(std::abs(vel), maxAccel);
@@ -146,6 +147,7 @@ void PlayerManager::movePlayer(int playerID = 0) {
       deflectPlayers(playerID, RobotIndex2);
     }
   }
+
   // -------------x-------------x----------//
 }
 
@@ -160,6 +162,21 @@ void PlayerManager::SetPlayerV(Eigen::Vector3d PlayerV, int PlayerID) {
   PlayerV = Eigen::Vector3d(std::clamp(float(PlayerV.x()), playerMin, playerMax),
                             std::clamp(float(PlayerV.y()), playerMin, playerMax),
                             std::clamp(float(PlayerV.z()), rotationMin, rotationMax));
+  if (std::abs(cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].y())-(cfg::SystemConfig::robotRadius)>=(cfg::Dimensions::outerFieldHeight/2)){
+    if ((std::abs(cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].y())==cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].y() and abs(PlayerV.y())==PlayerV.y())or (std::abs(cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].y())!=cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].y() and abs(PlayerV.y())!=PlayerV.y())){
+
+      PlayerV=Eigen::Vector3d(PlayerV.x(),0,PlayerV.z());
+    
+    }
+  }
+  if (std::abs(cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].x()) -(cfg::SystemConfig::robotRadius)>=(cfg::Dimensions::outerFieldWidth/2)){
+      if ((std::abs(cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].x())==cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].x() and abs(PlayerV.x())==PlayerV.x())or (std::abs(cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].x())!=cfg::SystemConfig::teamOnePlayerPos[PlayerID-1].x() and abs(PlayerV.x())!=PlayerV.x())){
+     
+        PlayerV=Eigen::Vector3d(0,PlayerV.y(),PlayerV.z());
+    
+      }
+  }
+  
   cfg::SystemConfig::teamOnePlayerVel[PlayerID - 1] = PlayerV;
 }
 }  // namespace Player
