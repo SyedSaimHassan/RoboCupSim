@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "dropDownUI.h"
 
 namespace Controller {
 
@@ -21,9 +22,20 @@ void Game::paintEvent(QPaintEvent *event) {
   keyControls();
   drawField(&painter);
   ManagePlayers(&painter);
-  
   drawBall(&painter);
-  drawStats(&painter);
+
+  painter.save();
+  painter.resetTransform();
+  DropDownUI::Draw(painter);
+  painter.restore();
+}
+
+void Game::mousePressEvent(QMouseEvent *event)
+{
+    if (DropDownUI::HandleClick(this, event->x(), event->y()))
+    {
+        update(); // refresh after showing inputs
+    }
 }
 
 void Game::
