@@ -26,6 +26,7 @@
 namespace Player {
 
 class PlayerManager : public Players{
+class PlayerManager : public Players{
  private:
 
   QSet<int> PlayerKeys;

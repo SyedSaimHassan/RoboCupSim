@@ -1,4 +1,5 @@
 #include "playerManager.h"
+#include "bits/stdc++.h"
 namespace Player {
 void PlayerManager::ManagePlayers(QPainter *p, QSet<int> PlayerKeys) {
   this->PlayerKeys = PlayerKeys;
