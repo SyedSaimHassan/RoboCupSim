@@ -21,7 +21,6 @@ void Game::paintEvent(QPaintEvent *event) {
   keyControls();
   drawField(&painter);
   ManagePlayers(&painter);
-  
   drawBall(&painter);
 }
 
