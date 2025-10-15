@@ -14,6 +14,7 @@ struct SystemConfig {
   static const float ballMass;
   static const float ballRadius;
   static const float ballAcceleration;
+  static Eigen::Vector2d currBallPosition;
   static const Eigen::Vector2d initBallPosition;
 
   // Robots
