@@ -15,6 +15,7 @@
 #include "transformation.h"
 #include "ball.h"
 #include "playingField.h"
+#include "Robotstats.h"
 #include "playerManager.h"
 #define To_Be_Implemented int
 #define dt 1/cfg::SystemConfig::frameRate
@@ -27,7 +28,9 @@ class Game : public QWidget {
   Player::PlayerManager Players_;
   Ball::Ball Ball_;
   UI Field; 
-
+  RbSt Stats;
+  
+  void drawStats(QPainter *painter);
   void drawField(QPainter *painter);
   void ManagePlayers(QPainter *painter);
   void drawBall(QPainter *painter);

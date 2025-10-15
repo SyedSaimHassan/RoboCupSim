@@ -8,5 +8,6 @@ target_link_libraries(Main
     Qt5::Core
     Qt5::Gui
     GameController
+    VisualsLib
     pthread
 )
