@@ -118,8 +118,10 @@ void PlayerManager::movePlayer(int playerID = 0) {
       (cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() +
        cfg::SystemConfig::teamOnePlayerVel[playerID - 1].y());
   playerGyroAngle[playerID - 1] = (std::fmod(
-      playerGyroAngle[playerID - 1] + cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(), 2*M_PI));
-
+      playerGyroAngle[playerID - 1] + cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(),
+      (2.0f*M_PI)));
+  // std::cout << "[Player::PlayerManager::handleManual] " << playerGyroAngle[playerID - 1]
+  //           << std::endl;
   auto applyDecel = [](float vel, float maxAccel) {
     float decel = std::min(std::abs(vel), maxAccel);
     if (vel > 0) decel *= -1;
