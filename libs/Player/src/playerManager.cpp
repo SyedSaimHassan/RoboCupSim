@@ -19,8 +19,8 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
   auto pos2 = getPose(PlayerID2);
 
   double distance = util::euclideanDistance(changeHelper(pos1), changeHelper(pos2));
-  double deltaDis = cfg::SystemConfig::robotRadius * 2.005 - distance, deltaX = (pos2.x() - pos1.x()),
-         deltaY = (pos2.y() - pos1.y());
+  double deltaDis = cfg::SystemConfig::robotRadius * 2.005 - distance,
+         deltaX = (pos2.x() - pos1.x()), deltaY = (pos2.y() - pos1.y());
   pos1.x() -= (deltaDis / 2) * deltaX / distance;
   pos2.x() += (deltaDis / 2) * deltaX / distance;
   pos1.y() -= (deltaDis / 2) * deltaY / distance;
@@ -31,6 +31,26 @@ void PlayerManager::deflectPlayers(int PlayerID1, int PlayerID2) {
   // avoiding overlap
 
   // deflection
+
+  QPointF normal = (changeHelper(pos2) - changeHelper(pos1));
+  distance = std::hypot(normal.x(), normal.y());
+  normal /= distance;
+  QPointF tangent(-normal.y(), normal.x());
+
+  Eigen::Vector3d V1 = getPlayerV(PlayerID1), V2 = getPlayerV(PlayerID2);
+  double Vref = (V2 - V1).dot(convertToEig(normal));
+
+  double playerPlayerElasticiy = 0.5;
+
+  double impulse = -cfg::SystemConfig::robotMass * (1 + playerPlayerElasticiy) * Vref / 2;
+
+  Eigen::Vector3d j = convertToEig(impulse * normal);
+
+  V1 -= j / cfg::SystemConfig::robotMass;
+  V2 += j / cfg::SystemConfig::robotMass;
+
+  SetPlayerV(V1, PlayerID1);
+  SetPlayerV(V2, PlayerID2);
 }
 void PlayerManager::handleAuto(int PlayerInd) {
   (Trajectory.SetVelocityFromTraj(PlayerInd), PlayerInd);
@@ -78,27 +98,6 @@ void PlayerManager::handleManual(int PlayerInd) {
   }
 
   SetPlayerV(PlayerVel, PlayerInd);
-  // deflection
-
-  QPointF normal = (changeHelper(pos2) - changeHelper(pos1));
-  distance = std::hypot(normal.x(), normal.y());
-  normal /= distance;
-  QPointF tangent(-normal.y(), normal.x());
-
-  Eigen::Vector3d V1 = getPlayerV(PlayerID1), V2 = getPlayerV(PlayerID2);
-  double Vref = (V2 - V1).dot(convertToEig(normal));
-
-  double playerPlayerElasticiy = 0.5;
-
-  double impulse = -cfg::SystemConfig::robotMass * (1+playerPlayerElasticiy)*Vref / 2;
-
-  Eigen::Vector3d j = convertToEig(impulse * normal);
-
-  V1 -= j / cfg::SystemConfig::robotMass;
-  V2 += j / cfg::SystemConfig::robotMass;
-
-  SetPlayerV(V1, PlayerID1);
-  SetPlayerV(V2, PlayerID2);
 }
 void PlayerManager::movePlayer(int playerID = 0) {
   switch (cfg::SystemConfig::PlayerStates[playerID - 1]) {
@@ -141,7 +140,8 @@ void PlayerManager::movePlayer(int playerID = 0) {
        RobotIndex2++) {
     Eigen::Vector3d pos1 = Players::getPose(playerID);
     Eigen::Vector3d pos2 = Players::getPose(RobotIndex2);
-    if (util::euclideanDistance(cfg::SystemConfig::teamOnePlayerPos[playerID - 1], cfg::SystemConfig::teamOnePlayerPos[RobotIndex2 - 1]) <=
+    if (util::euclideanDistanceVector(cfg::SystemConfig::teamOnePlayerPos[playerID - 1],
+                                cfg::SystemConfig::teamOnePlayerPos[RobotIndex2 - 1]) <=
         2.005 * cfg::SystemConfig::robotRadius) {
       deflectPlayers(playerID, RobotIndex2);
     }
