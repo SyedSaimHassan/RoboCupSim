@@ -23,12 +23,14 @@ void Game::paintEvent(QPaintEvent *event) {
   ManagePlayers(&painter);
   
   drawBall(&painter);
+  drawStats(&painter);
 }
 
 void Game::
 drawField(QPainter *painter) { this->Field.CreateField(painter); }
 void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter, PlayerKeys); }
-void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter); }
+void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter);}
+void Game::drawStats(QPainter *painter) { this->Stats.drawStats(painter); Stats.PLayerID=SelectedPlayerId;}
 
 void Game::keyPressEvent(QKeyEvent *event) { handleInsertKey(event->key()); }
 void Game::keyReleaseEvent(QKeyEvent *event) { handleRemoveKey(event->key()); }
