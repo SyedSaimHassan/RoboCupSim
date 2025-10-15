@@ -21,6 +21,8 @@
 #include "systemConfig.h"
 #include "TrapezoidalTrajectory.h"
 #define dt 1 / cfg::SystemConfig::frameRate
+#include "playerCollision.h"
+// #define framerate 60
 namespace Player {
 
 class PlayerManager : public Players{
@@ -41,7 +43,6 @@ class PlayerManager : public Players{
   Eigen::Vector3d getPlayerV(int PlayerID);
   void SetPlayerV(Eigen::Vector3d PlayerV, int PlayerID);
   void decelPlayer(int PlayerID);
-  Physics::Collision Collisions;
 };
 
 }  // namespace Player

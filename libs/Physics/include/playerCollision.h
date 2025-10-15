@@ -1,5 +1,5 @@
-#ifndef COLLISIONS_H
-#define COLLISIONS_H
+#ifndef PLAYER_COLLISIONS_H
+#define PLAYER_COLLISIONS_H
 // C++ Libraries
 #include <cmath>
 #include <vector>
@@ -20,7 +20,8 @@
 #include "systemConfig.h"
 
 namespace Physics{
-    std::vector<std::pair<int,int>>Do(std::vector<Eigen::Vector3d>PlayerPositions);
-    std::bool checkCollision(Eigen::Vector3d PlayerID1,Eigen::Vector3d PlayerID2);
+
+    void checkPlayerCollisions(std::vector<Eigen::Vector3d>playerPositions,std::vector<Eigen::Vector3d>PlayerVelocities);
+    void deflectPlayers(std::vector<Eigen::Vector3d>PlayerPositions,std::vector<Eigen::Vector3d>PlayerVelocities,int PlayerId1,int PlayerId2);
 }
 #endif
