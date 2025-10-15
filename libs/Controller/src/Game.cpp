@@ -23,8 +23,8 @@ void Game::paintEvent(QPaintEvent *event) {
   drawField(&painter);
   ManagePlayers(&painter);
   
-  drawStats(&painter);
   drawBall(&painter);
+  drawStats(&painter);
 
   painter.save();
   painter.resetTransform();
