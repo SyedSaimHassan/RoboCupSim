@@ -7,7 +7,7 @@ std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
 const float cfg::SystemConfig::ballMass = 0.046f;
 const float cfg::SystemConfig::ballRadius = 0.0215f;
 const float cfg::SystemConfig::ballAcceleration = 0.1f;
-Eigne::Vector2d cfg::SystemConfig::currBallPosition = Eigen::Vector2d(0.0f, 0.0f);
+Eigen::Vector2d cfg::SystemConfig::currBallPosition = Eigen::Vector2d(0.0f, 0.0f);
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(1.0f, 0.0f);
 
 // Robot config (speed is in m/s)
