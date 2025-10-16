@@ -20,6 +20,8 @@
 #include "players.h"
 #include "systemConfig.h"
 #include "TrapezoidalTrajectory.h"
+#include "dimensions.h"
+
 #define dt 1 / cfg::SystemConfig::frameRate
 namespace Player {
 
