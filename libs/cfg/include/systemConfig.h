@@ -6,6 +6,7 @@
 namespace cfg {
 struct SystemConfig {
   static const float frameRate;
+  static const float wheelDiameter;
   static constexpr int numRobots = 8;
   static const float distanceFromRobotCenter;
   enum class RobotState {Autonomous, Manual};
