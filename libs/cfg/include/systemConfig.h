@@ -8,6 +8,7 @@ struct SystemConfig {
   static const float frameRate;
   static constexpr int numRobots = 8;
   static const std::vector<int> wheelAngles;
+  static const float distanceFromRobotCenter;
   enum class RobotState {Autonomous, Manual};
   static std::vector<RobotState> PlayerStates;
 

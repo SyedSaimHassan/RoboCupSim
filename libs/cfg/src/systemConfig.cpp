@@ -1,8 +1,9 @@
 #include "systemConfig.h"
 
 const float cfg::SystemConfig::frameRate = 60;
+const float cfg::SystemConfig::distanceFromRobotCenter = 0.185;
 std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
-const std::vector<int> cfg::SystemConfig::wheelAngles = {45, 135, 225, 315};
+const std::vector<int> cfg::SystemConfig::wheelAngles = {30, 150, 225, 315};
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;
