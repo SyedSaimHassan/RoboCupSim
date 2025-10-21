@@ -2,6 +2,7 @@
 
 const float cfg::SystemConfig::frameRate = 60;
 std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
+const std::vector<int> cfg::SystemConfig::wheelAngles = {45, 135, 225, 315};
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;

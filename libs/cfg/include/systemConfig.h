@@ -7,6 +7,7 @@ namespace cfg {
 struct SystemConfig {
   static const float frameRate;
   static constexpr int numRobots = 8;
+  static const std::vector<int> wheelAngles;
   enum class RobotState {Autonomous, Manual};
   static std::vector<RobotState> PlayerStates;
 
