@@ -31,3 +31,4 @@ target_link_libraries(GameController PUBLIC
     PlayerManager
     Traj
 )
+

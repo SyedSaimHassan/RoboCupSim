@@ -119,9 +119,9 @@ void PlayerManager::movePlayer(int playerID = 0) {
        cfg::SystemConfig::teamOnePlayerVel[playerID - 1].y());
   playerGyroAngle[playerID - 1] = (std::fmod(
       playerGyroAngle[playerID - 1] + cfg::SystemConfig::teamOnePlayerVel[playerID - 1].z(),
-      (2.0f*M_PI)));
-  // std::cout << "[Player::PlayerManager::handleManual] " << playerGyroAngle[playerID - 1]
-  //           << std::endl;
+      (2.0f * M_PI)));
+  std::cout << "[Player::PlayerManager::handleManual] " << playerGyroAngle[playerID - 1]
+            << std::endl;
   auto applyDecel = [](float vel, float maxAccel) {
     float decel = std::min(std::abs(vel), maxAccel);
     if (vel > 0) decel *= -1;
@@ -144,7 +144,7 @@ void PlayerManager::movePlayer(int playerID = 0) {
     Eigen::Vector3d pos1 = Players::getPose(playerID);
     Eigen::Vector3d pos2 = Players::getPose(RobotIndex2);
     if (util::euclideanDistanceVector(cfg::SystemConfig::teamOnePlayerPos[playerID - 1],
-                                cfg::SystemConfig::teamOnePlayerPos[RobotIndex2 - 1]) <=
+                                      cfg::SystemConfig::teamOnePlayerPos[RobotIndex2 - 1]) <=
         2.005 * cfg::SystemConfig::robotRadius) {
       deflectPlayers(playerID, RobotIndex2);
     }

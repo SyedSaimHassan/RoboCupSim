@@ -42,6 +42,8 @@ class PlayerManager : public Players {
   void movePlayer(int playerID);
   Eigen::Vector3d getPlayerV(int PlayerID);
   void SetPlayerV(Eigen::Vector3d PlayerV, int PlayerID);
+
+  
 };
 
 }  // namespace Player

@@ -16,5 +16,5 @@ target_include_directories(VisualsLib PUBLIC include)
 
 target_include_directories(VisualsLib PUBLIC include)
 
-add_subdirectory(demo)
+# add_subdirectory(demo)
 # add_subdirectory(test)
