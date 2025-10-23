@@ -17,8 +17,9 @@
 #include "playingField.h"
 #include "Robotstats.h"
 #include "playerManager.h"
+// #include "grsim_interface.h"
 #define To_Be_Implemented int
-#define dt 1/cfg::SystemConfig::frameRate
+#define dt 1 / cfg::SystemConfig::frameRate
 namespace Controller {
 enum class State { Kickoff, Playing, Paused, Foul, Finished };
 
