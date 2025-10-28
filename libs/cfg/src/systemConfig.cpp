@@ -7,9 +7,9 @@ std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
 const std::vector<float> cfg::SystemConfig::wheelAngles = {0.523598776f, 2.617993878f,
                                                            3.926990817f, 5.497787144f}; // IN RADIANTS
 // Mani's Matrix
-Eigen::Matrix<double, 6, 6> cfg::SystemConfig::Q = Eigen::Matrix<double, 6, 6>::Zero();
-static const bool _Q_init = ([]() {
-    cfg::SystemConfig::Q.diagonal() << 0.05, 0.05, 0.005, 0.02, 0.02, 0.001;
+Eigen::Matrix<double, 6, 6> cfg::SystemConfig::P_diag = Eigen::Matrix<double, 6, 6>::Zero();
+static const bool P_diag_init = ([]() {
+    cfg::SystemConfig::P_diag.diagonal() << 0.05, 0.05, 0.005, 0.02, 0.02, 0.001;
     return true;
 })();
 
