@@ -12,7 +12,12 @@ const float cfg::SystemConfig::ballMass = 0.046f;
 const float cfg::SystemConfig::ballRadius = 0.0215f;
 const float cfg::SystemConfig::ballAcceleration = 0.1f;
 Eigen::Vector2d cfg::SystemConfig::currBallPosition = Eigen::Vector2d(0.0f, 0.0f);
+Eigen::Vector2d cfg::SystemConfig::currBallVel = Eigen::Vector2d(0.0f,0.0f);
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(1.0f, 0.0f);
+
+// Ball possession defaults
+bool cfg::SystemConfig::ballHeld = false;
+int cfg::SystemConfig::ballHolder = -1;
 
 // Robot config (speed is in m/s)
 const float cfg::SystemConfig::robotMass = 1.5f;
