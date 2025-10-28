@@ -5,9 +5,11 @@
 
 namespace cfg {
 struct SystemConfig {
+  static const float wheelRPM;
   static const float frameRate;
   static const float wheelDiameter;
   static constexpr int numRobots = 8;
+  static Eigen::Matrix<double, 6, 6> Q;
   static const float distanceFromRobotCenter;
   enum class RobotState {Autonomous, Manual};
   static const std::vector<float> wheelAngles;
@@ -41,6 +43,8 @@ struct SystemConfig {
   static std::vector<std::vector<Eigen::Vector3d>> teamTwoWayPoints;
 
   // Robot Team
+  static std::vector<Eigen::Vector4d> teamOneWheelRpm;
+  static std::vector<Eigen::Vector4d> teamTwoWheelRpm;
   static std::vector<Eigen::Vector3d> teamOneStartFormation;
   static std::vector<Eigen::Vector3d> teamTwoStartFormation;
   // Ball possession
