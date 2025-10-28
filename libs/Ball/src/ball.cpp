@@ -5,6 +5,7 @@ void Ball::drawBall(QPainter* painter) {
   moveBall();
   painter->setBrush(QBrush(Qt::red));
   painter->setPen(QPen(Qt::black, 0.01));
+  ballPos = cfg::SystemConfig::currBallPosition;
   qreal X = ballPos.x();
   qreal Y = ballPos.y();
   QPointF Cords(X, Y);

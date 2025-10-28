@@ -21,20 +21,9 @@
 
 class Players : public QWidget {
  public:
-  // Body Parameters
-  std::vector<QPointF> playerPositions = {QPointF(cfg::SystemConfig::teamOneStartFormation[0][0],
-                                                  cfg::SystemConfig::teamOneStartFormation[0][1]),
-                                          QPointF(cfg::SystemConfig::teamOneStartFormation[1][0],
-                                                  cfg::SystemConfig::teamOneStartFormation[1][1]),
-                                          QPointF(cfg::SystemConfig::teamOneStartFormation[2][0],
-                                                  cfg::SystemConfig::teamOneStartFormation[2][1]),
-                                          QPointF(cfg::SystemConfig::teamOneStartFormation[3][0],
-                                                  cfg::SystemConfig::teamOneStartFormation[3][1])};
-  std::vector<double> playerGyroAngle = {0.0, 0.0, 0.0, 0.0};
+  void Render(QPainter* painter);
 
-  void Render(QPainter *painter);
-
-  void drawPlayers(QPainter *painter, int playerNumber);
+  void drawPlayers(QPainter* painter, int playerNumber);
   Eigen::Vector3d getPose(int playerID);
   void setPose(Eigen::Vector3d pose, int playerID);
 
