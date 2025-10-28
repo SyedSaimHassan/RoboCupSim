@@ -154,6 +154,50 @@ void PlayerManager::movePlayer(int playerID = 0) {
   // -------------x-------------x----------//
 }
 
+void PlayerManager::handleBall(int PlayerID){
+  using cfg::SystemConfig;
+
+
+  Eigen::Vector3d pose3 = getPose(PlayerID);
+  Eigen::Vector2d playerPos(pose3.x(), pose3.y());
+  Eigen::Vector3d playerVel3 = getPlayerV(PlayerID);
+  Eigen::Vector2d playerVel(playerVel3.x(), playerVel3.y());
+
+  Eigen::Vector2d ballPos = SystemConfig::currBallPosition;
+  Eigen::Vector2d ballVel = SystemConfig::currBallVel;
+
+  Eigen::Vector2d forward(std::cos(pose3.z()), std::sin(pose3.z()));
+
+  Eigen::Vector2d toBall = ballPos - playerPos;
+  double dist = toBall.norm();
+
+  double pickupDist = SystemConfig::robotRadius + SystemConfig::ballRadius + 0.05;
+
+  if (SystemConfig::ballHeld && SystemConfig::ballHolder == PlayerID) {
+    if (PlayerKeys.contains(Qt::Key_Space)) {
+      SystemConfig::ballHeld = false;
+      SystemConfig::ballHolder = -1;
+      double throwSpeed = SystemConfig::ballAcceleration * 5.0; 
+      SystemConfig::currBallVel = playerVel + forward * throwSpeed;
+      SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
+    } else {
+      SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
+      SystemConfig::currBallVel = playerVel; 
+    }
+    return;
+  }
+
+  if (!SystemConfig::ballHeld) {
+    double forwardDot = toBall.dot(forward);
+    if (forwardDot > 0 && dist <= pickupDist) {
+      SystemConfig::ballHeld = true;
+      SystemConfig::ballHolder = PlayerID;
+      SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
+      SystemConfig::currBallVel = playerVel;
+    }
+  }
+}
+
 Eigen::Vector3d PlayerManager::getPlayerV(int PlayerID) {
   return cfg::SystemConfig::teamOnePlayerVel[PlayerID - 1];
 }
