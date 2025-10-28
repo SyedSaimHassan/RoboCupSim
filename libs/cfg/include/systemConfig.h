@@ -8,6 +8,7 @@ struct SystemConfig {
   static const float frameRate;
   static const float wheelDiameter;
   static constexpr int numRobots = 8;
+  static Eigen::Matrix<double, 6, 6> Q;
   static const float distanceFromRobotCenter;
   enum class RobotState {Autonomous, Manual};
   static const std::vector<float> wheelAngles;

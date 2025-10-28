@@ -6,6 +6,13 @@ const float cfg::SystemConfig::distanceFromRobotCenter = 0.1925;
 std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
 const std::vector<float> cfg::SystemConfig::wheelAngles = {0.523598776f, 2.617993878f,
                                                            3.926990817f, 5.497787144f}; // IN RADIANTS
+// Mani's Matrix
+Eigen::Matrix<double, 6, 6> cfg::SystemConfig::Q = Eigen::Matrix<double, 6, 6>::Zero();
+static const bool _Q_init = ([]() {
+    cfg::SystemConfig::Q.diagonal() << 0.05, 0.05, 0.005, 0.02, 0.02, 0.001;
+    return true;
+})();
+
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;
