@@ -75,7 +75,28 @@ std::vector<Eigen::Vector3d> cfg::SystemConfig::teamTwoPlayerVel = []() {
 
 std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamOneWayPoints = {
     {Eigen::Vector3d(2, 0, 0), Eigen::Vector3d(0, 1, 0)}, {}, {}, {}};
+
 std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamTwoWayPoints = {{}, {}, {}, {}};
+
+// Wheel RPMs
+std::vector<Eigen::Vector4d> cfg::SystemConfig::teamOneWheelRpm = []() {
+  std::vector<Eigen::Vector4d> v(SystemConfig::numRobots);
+  v[0] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  v[1] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  v[2] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  v[3] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  return v;
+}();
+
+std::vector<Eigen::Vector4d> cfg::SystemConfig::teamTwoWheelRpm = []() {
+  std::vector<Eigen::Vector4d> v(SystemConfig::numRobots);
+  v[0] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  v[1] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  v[2] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  v[3] = Eigen::Vector4d(0.0f, 0.0f, 0.0f, 0.0f);
+  return v;
+}();
+
 // Team 1 initial formation
 std::vector<Eigen::Vector3d> cfg::SystemConfig::teamOneStartFormation = []() {
   std::vector<Eigen::Vector3d> v(SystemConfig::numRobots);
