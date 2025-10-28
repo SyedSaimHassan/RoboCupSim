@@ -19,10 +19,10 @@ void Game::paintEvent(QPaintEvent *event) {
   cfg::Dimensions::screenWidth = width();
   cfg::Dimensions::screenHeight = height();
   Transformation::instance().transformation(&painter, rect());
+  // comms::receiveGrSimRobots();
   keyControls();
   drawField(&painter);
   ManagePlayers(&painter);
-  
   drawBall(&painter);
   drawStats(&painter);
 
@@ -40,8 +40,7 @@ void Game::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void Game::
-drawField(QPainter *painter) { this->Field.CreateField(painter); }
+void Game::drawField(QPainter *painter) { this->Field.CreateField(painter); }
 void Game::ManagePlayers(QPainter *painter) { this->Players_.ManagePlayers(painter, PlayerKeys); }
 void Game::drawBall(QPainter *painter) { this->Ball_.drawBall(painter);}
 void Game::drawStats(QPainter *painter) { this->Stats.drawStats(painter); Stats.PLayerID=SelectedPlayerId;}

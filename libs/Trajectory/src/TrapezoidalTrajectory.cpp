@@ -42,8 +42,6 @@ void Trapezoidal_Traj::SetVelocityFromTraj(int index) {
         Decelerate(cfg::SystemConfig::teamOnePlayerVel[index].z(),
                    cfg::SystemConfig::playerMaxOmegaAcceleration);
   };
-  // std::cout << "[Traj::Trapezoidal_Traj::SetVelocityFromTraj] "
-  //           << cfg::SystemConfig::teamOnePlayerVel[index].x() << " "
-  //           << cfg::SystemConfig::teamOnePlayerVel[index].y() << " " << std::endl;
+
 }
 }  // namespace Traj

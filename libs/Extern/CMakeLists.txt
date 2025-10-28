@@ -7,3 +7,5 @@ foreach(child ${children})
         endif()
     endif()
 endforeach()
+
+# add_subdirectory(eigen)
