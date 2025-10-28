@@ -36,7 +36,7 @@ void Game::mousePressEvent(QMouseEvent *event)
 {
     if (DropDownUI::HandleClick(this, event->x(), event->y()))
     {
-        update(); // refresh after showing inputs
+        update(); 
     }
 }
 

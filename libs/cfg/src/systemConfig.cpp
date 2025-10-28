@@ -4,8 +4,8 @@ const float cfg::SystemConfig::frameRate = 60;
 const float cfg::SystemConfig::wheelDiameter = 0.058;
 const float cfg::SystemConfig::distanceFromRobotCenter = 0.1925;
 std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
-const std::vector<float> cfg::SystemConfig::wheelAngles = {0.523598776f, 2.617993878f,
-                                                           3.926990817f, 5.497787144f}; // IN RADIANTS
+const std::vector<float> cfg::SystemConfig::wheelAngles = {
+    0.523598776f, 2.617993878f, 3.926990817f, 5.497787144f};  // IN RADIANTS
 // Mani's Matrix
 Eigen::Matrix<double, 6, 6> cfg::SystemConfig::P = Eigen::Matrix<double, 6, 6>::Zero();
 static const bool _P_init = ([]() {
@@ -13,6 +13,10 @@ static const bool _P_init = ([]() {
     return true;
 })();
 
+
+static std::vector<Eigen::Vector3d> CameraData;
+static std::vector<float> GyroData ;
+static std::vector<Eigen::Vector4d> EncoderData;
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;

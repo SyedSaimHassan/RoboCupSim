@@ -11,7 +11,7 @@ struct SystemConfig {
   static constexpr int numRobots = 8;
   static Eigen::Matrix<double, 6, 6> P;
   static const float distanceFromRobotCenter;
-  enum class RobotState {Autonomous, Manual};
+  enum class RobotState { Autonomous, Manual };
   static const std::vector<float> wheelAngles;
   static std::vector<RobotState> PlayerStates;
 
@@ -35,6 +35,10 @@ struct SystemConfig {
   // static const float playerMaxShootForce;
 
   // Trajectory
+  static std::vector<Eigen::Vector3d> CameraData;
+  static std::vector<float> GyroData;
+  static std::vector<Eigen::Vector4d> EncoderData;
+
   static std::vector<Eigen::Vector3d> teamOnePlayerPos;
   static std::vector<Eigen::Vector3d> teamTwoPlayerPos;
   static std::vector<Eigen::Vector3d> teamOnePlayerVel;

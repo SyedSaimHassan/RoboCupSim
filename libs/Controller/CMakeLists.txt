@@ -30,5 +30,7 @@ target_link_libraries(GameController PUBLIC
     VisualsLib
     PlayerManager
     Traj
+    HW
+    
 )
 
