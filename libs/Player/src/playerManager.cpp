@@ -1,4 +1,5 @@
 #include "playerManager.h"
+#include <iostream>
 namespace Player {
 void PlayerManager::ManagePlayers(QPainter* p, QSet<int> PlayerKeys) {
   this->PlayerKeys = PlayerKeys;
@@ -150,7 +151,8 @@ void PlayerManager::movePlayer(int playerID = 0) {
       deflectPlayers(playerID, RobotIndex2);
     }
   }
-
+  // Detecting Player to ball Collision: handled by handleBall (pickup/throw)
+  handleBall(playerID);
   // -------------x-------------x----------//
 }
 
@@ -174,10 +176,11 @@ void PlayerManager::handleBall(int PlayerID){
   double pickupDist = SystemConfig::robotRadius + SystemConfig::ballRadius + 0.05;
 
   if (SystemConfig::ballHeld && SystemConfig::ballHolder == PlayerID) {
-    if (PlayerKeys.contains(Qt::Key_Space)) {
+    if (this->SelectedPlayer == PlayerID && PlayerKeys.contains(Qt::Key_Space)) {
+      // std::cout << "Player " << PlayerID << " throws the ball\n";
       SystemConfig::ballHeld = false;
       SystemConfig::ballHolder = -1;
-      double throwSpeed = SystemConfig::ballAcceleration * 5.0; 
+      double throwSpeed = SystemConfig::ballAcceleration * 1.0; 
       SystemConfig::currBallVel = playerVel + forward * throwSpeed;
       SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
     } else {
@@ -188,12 +191,35 @@ void PlayerManager::handleBall(int PlayerID){
   }
 
   if (!SystemConfig::ballHeld) {
-    double forwardDot = toBall.dot(forward);
-    if (forwardDot > 0 && dist <= pickupDist) {
+    double forwardDotNorm = (dist > 1e-8) ? forward.dot(toBall / dist) : 1.0;
+    const double cos15 = 0.9659258262890683; // cos(15deg)
+    if (forwardDotNorm >= cos15 && dist <= pickupDist) {
+      // std::cout << "Player " << PlayerID << " picked up the ball\n";
       SystemConfig::ballHeld = true;
       SystemConfig::ballHolder = PlayerID;
       SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
       SystemConfig::currBallVel = playerVel;
+    }
+    else{
+      if (dist <= (SystemConfig::robotRadius + SystemConfig::ballRadius)) {
+        Eigen::Vector2d normal = (dist > 1e-8) ? (toBall / dist) : Eigen::Vector2d(1, 0);
+        Eigen::Vector2d ballVel2 = SystemConfig::currBallVel;
+        Eigen::Vector2d relativeVel = ballVel2 - playerVel;
+
+        double restitution = SystemConfig::ballPlayerElasticity;
+        double impulseScalar = -(1.0 + restitution) * relativeVel.dot(normal);
+
+        impulseScalar /= (1.0 / SystemConfig::ballMass + 1.0 / SystemConfig::robotMass);
+        Eigen::Vector2d impulse = impulseScalar * normal;
+        SystemConfig::currBallVel = ballVel2 + (impulse / SystemConfig::ballMass);
+        Eigen::Vector2d newPlayerVel2D = playerVel - (impulse / SystemConfig::robotMass);
+        Eigen::Vector3d newPlayerVel(newPlayerVel2D.x(), newPlayerVel2D.y(), playerVel3.z());
+        SetPlayerV(newPlayerVel, PlayerID);
+        double overlap = (SystemConfig::robotRadius + SystemConfig::ballRadius) - dist;
+        if (overlap > 0) {
+          SystemConfig::currBallPosition = ballPos + normal * overlap;
+        }
+      }
     }
   }
 }

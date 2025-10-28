@@ -35,6 +35,7 @@ class PlayerManager : public Players {
   void detectCollision();
   void deflectPlayers(int PlayerID1, int PlayerID2);
   void deflectBall(int PlayerID);
+  void handleBall(int PlayerID);
 
   int SelectedPlayer = 0;
   void handleAuto(int PlayerInd);

@@ -18,6 +18,7 @@ struct SystemConfig {
   static const float ballRadius;
   static const float ballAcceleration;
   static Eigen::Vector2d currBallPosition;
+  static Eigen::Vector2d currBallVel;
   static const Eigen::Vector2d initBallPosition;
 
   // Robots
@@ -42,6 +43,9 @@ struct SystemConfig {
   // Robot Team
   static std::vector<Eigen::Vector3d> teamOneStartFormation;
   static std::vector<Eigen::Vector3d> teamTwoStartFormation;
+  // Ball possession
+  static bool ballHeld;
+  static int ballHolder; // player ID who holds the ball, -1 if none
 };
 }  // namespace cfg
 

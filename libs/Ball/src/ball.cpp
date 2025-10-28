@@ -29,8 +29,12 @@ void Ball::checkOutOfMap() {
   }
 }
 void Ball::moveBall() {
+  ballV = cfg::SystemConfig::currBallVel;
+  ballPos = cfg::SystemConfig::currBallPosition;
   ballPos += ballV;
   checkOutOfMap();
+  cfg::SystemConfig::currBallVel = ballV;
+  cfg::SystemConfig::currBallPosition = ballPos;
 }
 void Ball::DebugMove(float x, float y) {
   if (x == 0 and y == 0) {
