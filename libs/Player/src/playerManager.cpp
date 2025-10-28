@@ -145,9 +145,8 @@ void PlayerManager::movePlayer(int playerID = 0) {
        RobotIndex2++) {
     Eigen::Vector3d pos1 = Players::getPose(playerID);
     Eigen::Vector3d pos2 = Players::getPose(RobotIndex2);
-    if (util::euclideanDistanceVector(cfg::SystemConfig::teamOnePlayerPos[playerID - 1],
-                                      cfg::SystemConfig::teamOnePlayerPos[RobotIndex2 - 1]) <=
-        2.005 * cfg::SystemConfig::robotRadius) {
+    Eigen::Vector2d distance = Eigen::Vector2d(pos1.x() - pos2.x(), pos1.y() - pos2.y());
+    if (distance.norm() <= 2.005 * cfg::SystemConfig::robotRadius) {
       deflectPlayers(playerID, RobotIndex2);
     }
   }
@@ -156,9 +155,8 @@ void PlayerManager::movePlayer(int playerID = 0) {
   // -------------x-------------x----------//
 }
 
-void PlayerManager::handleBall(int PlayerID){
+void PlayerManager::handleBall(int PlayerID) {
   using cfg::SystemConfig;
-
 
   Eigen::Vector3d pose3 = getPose(PlayerID);
   Eigen::Vector2d playerPos(pose3.x(), pose3.y());
@@ -180,27 +178,29 @@ void PlayerManager::handleBall(int PlayerID){
       // std::cout << "Player " << PlayerID << " throws the ball\n";
       SystemConfig::ballHeld = false;
       SystemConfig::ballHolder = -1;
-      double throwSpeed = SystemConfig::ballAcceleration * 1.0; 
+      double throwSpeed = SystemConfig::ballAcceleration * 1.0;
       SystemConfig::currBallVel = playerVel + forward * throwSpeed;
-      SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
+      SystemConfig::currBallPosition =
+          playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
     } else {
-      SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
-      SystemConfig::currBallVel = playerVel; 
+      SystemConfig::currBallPosition =
+          playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
+      SystemConfig::currBallVel = playerVel;
     }
     return;
   }
 
   if (!SystemConfig::ballHeld) {
     double forwardDotNorm = (dist > 1e-8) ? forward.dot(toBall / dist) : 1.0;
-    const double cos15 = 0.9659258262890683; // cos(15deg)
+    const double cos15 = 0.9659258262890683;  // cos(15deg)
     if (forwardDotNorm >= cos15 && dist <= pickupDist) {
       // std::cout << "Player " << PlayerID << " picked up the ball\n";
       SystemConfig::ballHeld = true;
       SystemConfig::ballHolder = PlayerID;
-      SystemConfig::currBallPosition = playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
+      SystemConfig::currBallPosition =
+          playerPos + forward * (SystemConfig::robotRadius + SystemConfig::ballRadius + 0.01);
       SystemConfig::currBallVel = playerVel;
-    }
-    else{
+    } else {
       if (dist <= (SystemConfig::robotRadius + SystemConfig::ballRadius)) {
         Eigen::Vector2d normal = (dist > 1e-8) ? (toBall / dist) : Eigen::Vector2d(1, 0);
         Eigen::Vector2d ballVel2 = SystemConfig::currBallVel;
