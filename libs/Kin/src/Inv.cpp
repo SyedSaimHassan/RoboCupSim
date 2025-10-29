@@ -2,7 +2,8 @@
 #include "Inv.h"
 namespace kin {
 
-void Inv::getVelocity() {
+std::vector<Eigen::Vector4d> Inv::getVelocity() {
+  std::vector<Eigen::Vector4d> velocities;
 
   std::vector<float> thetas = cfg::SystemConfig::wheelAngles;
   double r = cfg::SystemConfig::distanceFromRobotCenter;
@@ -18,17 +19,15 @@ void Inv::getVelocity() {
         -sin(thetas[3] + angle), cos(thetas[3] + angle), r;
 
     Eigen::Vector4d wheelVel = velocityToRpm((T * v) / wheelRadius);
-    cfg::SystemConfig::teamOneWheelRpm[i] = wheelVel;
-
+    velocities.push_back(wheelVel);
     if (wheelVel.norm() > 0) {
-      std::cout << "[kin::Inv::getVelocity] Robot ID: " << i + 1 << "\n"
-                << " Velocity M/S: " << v.x() << " " << v.y() << " " << v.z() << " "
-                << wheelVel.w() << std::endl;
       std::cout << "[kin::Inv::getVelocity] Robot ID: " << i + 1 << "\n"
                 << " RPMS: " << wheelVel.x() << " " << wheelVel.y() << " " << wheelVel.z() << " "
                 << wheelVel.w() << std::endl;
     }
   }
+
+  return velocities;
 }
 
 Eigen::Vector4d Inv::velocityToRpm(Eigen::Vector4d velocities) {

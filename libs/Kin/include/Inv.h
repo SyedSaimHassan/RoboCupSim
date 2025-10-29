@@ -7,7 +7,7 @@
 namespace kin {
 class Inv {
  public:
-  void getVelocity();
+  std::vector<Eigen::Vector4d> getVelocity();
   Eigen::Vector4d velocityToRpm(Eigen::Vector4d velocities);
 };
 }  // namespace kin
