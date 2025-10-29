@@ -6,6 +6,12 @@ const float cfg::SystemConfig::distanceFromRobotCenter = 0.1925;
 std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
 const std::vector<float> cfg::SystemConfig::wheelAngles = {
     0.523598776f, 2.617993878f, 3.926990817f, 5.497787144f};  // IN RADIANTS
+const float cfg::SystemConfig::staticFrictionCoefficient = 0.5;
+const float cfg::SystemConfig::kineticFrictionCoefficient = 0.3;
+const float cfg::SystemConfig::rollingFrictionCoefficient = 0.03;
+const std::vector<float> cfg::SystemConfig::wheelAngles = {0.523598776f, 2.617993878f,
+                                                           3.926990817f, 5.497787144f}; // IN RADIANTS
+
 // Mani's Matrix
 Eigen::Matrix<double, 6, 6> cfg::SystemConfig::P = Eigen::Matrix<double, 6, 6>::Zero();
 static const bool _P_init = ([]() {

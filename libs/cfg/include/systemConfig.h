@@ -14,6 +14,9 @@ struct SystemConfig {
   enum class RobotState { Autonomous, Manual };
   static const std::vector<float> wheelAngles;
   static std::vector<RobotState> PlayerStates;
+  static const float staticFrictionCoefficient;
+  static const float kineticFrictionCoefficient;
+  static const float rollingFrictionCoefficient;
 
   // Ball
   static const float ballMass;
