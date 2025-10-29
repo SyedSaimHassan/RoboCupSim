@@ -54,6 +54,7 @@ struct SystemConfig {
   static std::vector<Eigen::Vector4d> teamTwoWheelRpm;
   static std::vector<Eigen::Vector3d> teamOneStartFormation;
   static std::vector<Eigen::Vector3d> teamTwoStartFormation;
+  
   // Ball possession
   static bool ballHeld;
   static int ballHolder; // player ID who holds the ball, -1 if none
