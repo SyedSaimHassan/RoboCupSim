@@ -8,8 +8,7 @@ std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
 const std::vector<float> cfg::SystemConfig::wheelAngles = {
                                 0.523598776f, 2.617993878f, 3.926990817f, 5.497787144f};  // IN RADIANTS
 
-const std::vector<float> cfg::SystemConfig::wheelAngles = {
-                                0.523598776f, 2.617993878f,3.926990817f, 5.497787144f}; // IN RADIANTS
+
 
 // Friction
 const float cfg::SystemConfig::staticBallFrictionCoefficient = 0.5;
