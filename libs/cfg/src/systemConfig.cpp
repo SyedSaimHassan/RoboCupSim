@@ -4,8 +4,8 @@ const float cfg::SystemConfig::frameRate = 60;
 const float cfg::SystemConfig::wheelDiameter = 0.058;
 const float cfg::SystemConfig::distanceFromRobotCenter = 0.1925;
 std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
-const std::vector<float> cfg::SystemConfig::wheelAngles = {0.523598776f, 2.617993878f,
-                                                           3.926990817f, 5.497787144f}; // IN RADIANTS
+const std::vector<float> cfg::SystemConfig::wheelAngles = {
+    0.523598776f, 2.617993878f, 3.926990817f, 5.497787144f};  // IN RADIANTS
 // Mani's Matrix
 Eigen::Matrix<double, 6, 6> cfg::SystemConfig::P = Eigen::Matrix<double, 6, 6>::Zero();
 static const bool _P_init = ([]() {
@@ -13,13 +13,16 @@ static const bool _P_init = ([]() {
     return true;
 })();
 
+std::vector<Eigen::Vector3d> cfg::SystemConfig::CameraData;
+std::vector<float> cfg::SystemConfig::GyroData;
+std::vector<Eigen::Vector4d> cfg::SystemConfig::EncoderData;
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;
 const float cfg::SystemConfig::ballRadius = 0.0215f;
 const float cfg::SystemConfig::ballAcceleration = 0.1f;
 Eigen::Vector2d cfg::SystemConfig::currBallPosition = Eigen::Vector2d(0.0f, 0.0f);
-Eigen::Vector2d cfg::SystemConfig::currBallVel = Eigen::Vector2d(0.0f,0.0f);
+Eigen::Vector2d cfg::SystemConfig::currBallVel = Eigen::Vector2d(0.0f, 0.0f);
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(1.0f, 0.0f);
 
 // Ball possession defaults
@@ -73,8 +76,7 @@ std::vector<Eigen::Vector3d> cfg::SystemConfig::teamTwoPlayerVel = []() {
   return v;
 }();
 
-std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamOneWayPoints = {
-    {Eigen::Vector3d(2, 0, 0), Eigen::Vector3d(0, 1, 0)}, {}, {}, {}};
+std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamOneWayPoints = {{}, {}, {}, {}};
 
 std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamTwoWayPoints = {{}, {}, {}, {}};
 
