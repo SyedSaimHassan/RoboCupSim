@@ -8,8 +8,6 @@ std::vector<cfg::SystemConfig::RobotState> cfg::SystemConfig::PlayerStates;
 const std::vector<float> cfg::SystemConfig::wheelAngles = {
                                 0.523598776f, 2.617993878f, 3.926990817f, 5.497787144f};  // IN RADIANTS
 
-
-
 // Friction
 const float cfg::SystemConfig::staticBallFrictionCoefficient = 0.5;
 const float cfg::SystemConfig::kineticBallFrictionCoefficient = 0.3;
@@ -20,9 +18,12 @@ const float cfg::SystemConfig::kineticPlayerFrictionCoefficient = 0.75;
 const float cfg::SystemConfig::rollingPlayerFrictionCoefficient = 0.06;
 
 // Mani's Matrix
-Eigen::Matrix<double, 6, 6> cfg::SystemConfig::P = Eigen::Matrix<double, 6, 6>::Zero();
+std::vector<Eigen::Matrix<double, 6, 6>> cfg::SystemConfig::P(cfg::SystemConfig::numRobots, Eigen::Matrix<double, 6, 6>::Zero());
 static const bool _P_init = ([]() {
-    cfg::SystemConfig::P.diagonal() << 0.05, 0.05, 0.005, 0.02, 0.02, 0.001;
+    Eigen::Matrix<double, 6, 6> base = Eigen::Matrix<double, 6, 6>::Zero();
+    base.diagonal() << 0.05, 0.05, 0.005, 0.02, 0.02, 0.001;
+    for (auto &m : cfg::SystemConfig::P)
+        m = base;
     return true;
 })();
 
