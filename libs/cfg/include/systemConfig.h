@@ -14,6 +14,9 @@ struct SystemConfig {
   enum class RobotState { Autonomous, Manual };
   static const std::vector<float> wheelAngles;
   static std::vector<RobotState> PlayerStates;
+  static const float staticFrictionCoefficient;
+  static const float kineticFrictionCoefficient;
+  static const float rollingFrictionCoefficient;
 
   // Ball
   static const float ballMass;
@@ -51,6 +54,7 @@ struct SystemConfig {
   static std::vector<Eigen::Vector4d> teamTwoWheelRpm;
   static std::vector<Eigen::Vector3d> teamOneStartFormation;
   static std::vector<Eigen::Vector3d> teamTwoStartFormation;
+  
   // Ball possession
   static bool ballHeld;
   static int ballHolder; // player ID who holds the ball, -1 if none
