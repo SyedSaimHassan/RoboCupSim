@@ -18,7 +18,7 @@ class SensorManager{
     SensorType EncoderType;
     void AssignTypes();
     void GetGyroUpdate();
-    void GetEncoderUPdate();
+    void GetEncoderUpdate();
     void GetCameraUpdate();
 
 

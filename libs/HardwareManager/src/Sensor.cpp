@@ -5,7 +5,7 @@ namespace HW {
 void SensorManager::update() {
   GetCameraUpdate();
   GetGyroUpdate();
-  GetEncoderUPdate();
+  GetEncoderUpdate();
 };
 void SensorManager::AssignTypes() {
 #ifdef BUILD_ON_PI
@@ -24,8 +24,7 @@ void SensorManager::GetCameraUpdate() {
   if (CameraType == SensorType::Real) {
   } else {
     for (int i = 0; i < int(cfg::SystemConfig::numRobots / 2); i++) {
-      cfg::SystemConfig::CameraData.push_back(
-          Eigen::Vector3d(cfg::SystemConfig::teamOnePlayerPos[i]));
+      cfg::SystemConfig::CameraData[i] = (cfg::SystemConfig::teamOnePlayerPos[i]);
     }
   }
 }
@@ -34,14 +33,16 @@ void SensorManager::GetGyroUpdate() {
   if (GyroType == SensorType::Real) {
   } else {
     for (int i = 0; i < int(cfg::SystemConfig::numRobots / 2); i++) {
-      cfg::SystemConfig::GyroData.push_back(cfg::SystemConfig::teamOnePlayerPos[i].z());
+      cfg::SystemConfig::GyroData[i] = (cfg::SystemConfig::teamOnePlayerPos[i].z());
     }
   }
 }
-void SensorManager::GetEncoderUPdate() {
+void SensorManager::GetEncoderUpdate() {
   if (EncoderType == SensorType::Real) {
   } else {
-    
+    for (int i = 0; i < int(cfg::SystemConfig::numRobots / 2); i++) {
+      cfg::SystemConfig::EncoderData[i] = cfg::SystemConfig::teamOneWheelRpm[i];
+    }
   }
 }
 SensorManager::SensorManager() {

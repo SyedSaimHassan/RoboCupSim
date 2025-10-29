@@ -13,17 +13,16 @@ static const bool _P_init = ([]() {
     return true;
 })();
 
-
-static std::vector<Eigen::Vector3d> CameraData;
-static std::vector<float> GyroData ;
-static std::vector<Eigen::Vector4d> EncoderData;
+std::vector<Eigen::Vector3d> cfg::SystemConfig::CameraData;
+std::vector<float> cfg::SystemConfig::GyroData;
+std::vector<Eigen::Vector4d> cfg::SystemConfig::EncoderData;
 
 // Ball config
 const float cfg::SystemConfig::ballMass = 0.046f;
 const float cfg::SystemConfig::ballRadius = 0.0215f;
 const float cfg::SystemConfig::ballAcceleration = 0.1f;
 Eigen::Vector2d cfg::SystemConfig::currBallPosition = Eigen::Vector2d(0.0f, 0.0f);
-Eigen::Vector2d cfg::SystemConfig::currBallVel = Eigen::Vector2d(0.0f,0.0f);
+Eigen::Vector2d cfg::SystemConfig::currBallVel = Eigen::Vector2d(0.0f, 0.0f);
 const Eigen::Vector2d cfg::SystemConfig::initBallPosition = Eigen::Vector2d(1.0f, 0.0f);
 
 // Ball possession defaults
@@ -77,8 +76,7 @@ std::vector<Eigen::Vector3d> cfg::SystemConfig::teamTwoPlayerVel = []() {
   return v;
 }();
 
-std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamOneWayPoints = {
-    {Eigen::Vector3d(2, 0, 0), Eigen::Vector3d(0, 1, 0)}, {}, {}, {}};
+std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamOneWayPoints = {{}, {}, {}, {}};
 
 std::vector<std::vector<Eigen::Vector3d>> cfg::SystemConfig::teamTwoWayPoints = {{}, {}, {}, {}};
 

@@ -25,7 +25,8 @@ void Game::paintEvent(QPaintEvent *event) {
   ManagePlayers(&painter);
   drawBall(&painter);
   drawStats(&painter);
-
+  
+  Hardware.update();
   painter.save();
   painter.resetTransform();
   DropDownUI::Draw(painter);
