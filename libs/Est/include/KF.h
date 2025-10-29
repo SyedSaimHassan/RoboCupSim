@@ -7,8 +7,7 @@
 namespace kf{
 class KF{
     public:
-    
-    void predictPosition(Eigen::Vector3d x, Eigen::Vector3d z , Eigen::Vector3d vel);
+    void predictPosition();
 };
 }
 #endif
