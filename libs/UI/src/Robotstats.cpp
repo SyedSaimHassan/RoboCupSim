@@ -21,9 +21,17 @@ void RbSt::drawStats(QPainter *painter){
         
         break;
     }
+    // Ball
+    painter->drawText(cfg::Dimensions::outerFieldWidth*5.8,-cfg::Dimensions::outerFieldHeight-20, QString("Ball X Position: %1").arg(cfg::SystemConfig::currBallPosition.x()));
+    painter->drawText(cfg::Dimensions::outerFieldWidth*5.8,-cfg::Dimensions::outerFieldHeight-19, QString("Ball Y Position: %1").arg(cfg::SystemConfig::currBallPosition.y()));
+    painter->drawText(cfg::Dimensions::outerFieldWidth*5.8,-cfg::Dimensions::outerFieldHeight-18, QString("Ball X Velocity %1").arg(cfg::SystemConfig::currBallVel.x()));
+    painter->drawText(cfg::Dimensions::outerFieldWidth*5.8,-cfg::Dimensions::outerFieldHeight-17, QString("Ball Y  Velocity %1").arg(cfg::SystemConfig::currBallVel.y()));
+
     QPen pen(Qt::black,0.1);
     painter->setBrush(Qt::NoBrush);
     painter->setPen(pen);
     painter->drawRect(QRectF(cfg::Dimensions::outerFieldWidth*5.6,-cfg::Dimensions::outerFieldHeight*5.2,15,6.8));
+    painter->drawRect(QRectF(cfg::Dimensions::outerFieldWidth*5.6,-cfg::Dimensions::outerFieldHeight-20.5,15,5));
+
 
 }
