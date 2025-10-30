@@ -1,6 +1,6 @@
 add_executable(Main
-    Main.cpp     
- 
+    Main.cpp
+    
 )
 
 target_link_libraries(Main
