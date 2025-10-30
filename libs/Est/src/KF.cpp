@@ -51,7 +51,7 @@ void KF::predictPosition(){
 
         cfg::SystemConfig::P[i] = ((I - (K * H)) * P_k * (I - (K * H)).transpose()) + (K * R * K.transpose());
         cfg::SystemConfig::teamOnePlayerPos[i]=X_K_1.head<3>();
-        cfg::SystemConfig::teamOnePlayerPos[i]=X_K_1.tail<3>();
+        cfg::SystemConfig::teamOnePlayerVel[i]=X_K_1.tail<3>();
 
         
 }
