@@ -152,6 +152,16 @@ void PlayerManager::movePlayer(int playerID = 0) {
   }
   // Detecting Player to ball Collision: handled by handleBall (pickup/throw)
   handleBall(playerID);
+
+  //not letting the player leave the field
+
+  if(cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() - cfg::SystemConfig::robotRadius < -cfg::Dimensions::fieldWidth/2) cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x()  = -cfg::Dimensions::fieldWidth/2 + cfg::SystemConfig::robotRadius;
+  if(cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x() + cfg::SystemConfig::robotRadius > cfg::Dimensions::fieldWidth/2) cfg::SystemConfig::teamOnePlayerPos[playerID - 1].x()  = cfg::Dimensions::fieldWidth/2 - cfg::SystemConfig::robotRadius;
+
+  if(cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() - cfg::SystemConfig::robotRadius < -cfg::Dimensions::fieldHeight/2) cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y()  = -cfg::Dimensions::fieldHeight/2 + cfg::SystemConfig::robotRadius;
+  if(cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y() + cfg::SystemConfig::robotRadius > cfg::Dimensions::fieldHeight/2) cfg::SystemConfig::teamOnePlayerPos[playerID - 1].y()  = cfg::Dimensions::fieldHeight/2 - cfg::SystemConfig::robotRadius;
+
+
   // -------------x-------------x----------//
 }
 
